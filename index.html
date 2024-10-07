@@ -34,6 +34,9 @@
             margin: 5px 0;
             padding: 10px;
             border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         button {
             padding: 10px 15px;
@@ -45,6 +48,12 @@
         }
         button:hover {
             background: #0056b3;
+        }
+        .delete-button {
+            background: #dc3545; /* Rouge */
+        }
+        .delete-button:hover {
+            background: #c82333; /* Rouge foncé */
         }
     </style>
 </head>
@@ -134,7 +143,17 @@
             const listItem = document.createElement('li');
             listItem.textContent = unitName;
 
+            // Ajouter un bouton de suppression
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Supprimer';
+            deleteButton.className = 'delete-button';
+            deleteButton.onclick = function() {
+                armyList.removeChild(listItem);
+                removeUnit(unitName); // Supprime aussi du localStorage
+            };
+
             // Ajouter l'élément à la liste
+            listItem.appendChild(deleteButton);
             armyList.appendChild(listItem);
 
             // Enregistrer l'unité dans le localStorage
@@ -156,7 +175,17 @@
             const listItem = document.createElement('li');
             listItem.textContent = optiName;
 
+            // Ajouter un bouton de suppression
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Supprimer';
+            deleteButton.className = 'delete-button';
+            deleteButton.onclick = function() {
+                optisList.removeChild(listItem);
+                removeOpti(optiName); // Supprime aussi du localStorage
+            };
+
             // Ajouter l'élément à la liste
+            listItem.appendChild(deleteButton);
             optisList.appendChild(listItem);
 
             // Enregistrer l'optimisation dans le localStorage
@@ -165,6 +194,20 @@
             // Réinitialiser la sélection
             optisSelect.selectedIndex = 0;
         }
+    }
+
+    // Fonction pour supprimer une unité du localStorage
+    function removeUnit(unitName) {
+        let army = JSON.parse(localStorage.getItem('army')) || [];
+        army = army.filter(unit => unit !== unitName);
+        localStorage.setItem('army', JSON.stringify(army));
+    }
+
+    // Fonction pour supprimer une optimisation du localStorage
+    function removeOpti(optiName) {
+        let optis = JSON.parse(localStorage.getItem('optimisations')) || [];
+        optis = optis.filter(opti => opti !== optiName);
+        localStorage.setItem('optimisations', JSON.stringify(optis));
     }
 
     // Fonction pour sauvegarder l'unité dans le localStorage
@@ -196,6 +239,16 @@
         army.forEach(unit => {
             const listItem = document.createElement('li');
             listItem.textContent = unit;
+
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Supprimer';
+            deleteButton.className = 'delete-button';
+            deleteButton.onclick = function() {
+                armyList.removeChild(listItem);
+                removeUnit(unit); // Supprime aussi du localStorage
+            };
+
+            listItem.appendChild(deleteButton);
             armyList.appendChild(listItem);
         });
 
@@ -204,6 +257,16 @@
         optis.forEach(opti => {
             const listItem = document.createElement('li');
             listItem.textContent = opti;
+
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Supprimer';
+            deleteButton.className = 'delete-button';
+            deleteButton.onclick = function() {
+                optisList.removeChild(listItem);
+                removeOpti(opti); // Supprime aussi du localStorage
+            };
+
+            listItem.appendChild(deleteButton);
             optisList.appendChild(listItem);
         });
     };
