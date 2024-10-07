@@ -53,18 +53,19 @@
 <h1>Configuration de l'Armée - Astra Militarum</h1>
 
 <div class="army-form">
-    <label for="detachment-select">Choisir un détachement :</label>
-    <select id="detachment-select">
-        <option value="">-- Sélectionnez un détachement --</option>
-        <!-- Les détachements seront ajoutés ici par JavaScript -->
-    </select>
-
     <label for="unit-select">Choisir une unité :</label>
-    <select id="unit-select" disabled>
+    <select id="unit-select">
         <option value="">-- Sélectionnez une unité --</option>
         <!-- Les unités seront ajoutées ici par JavaScript -->
     </select>
     <button onclick="addUnit()" id="add-button" disabled>Ajouter</button>
+
+    <label for="optis-select">Choisir une optimisation :</label>
+    <select id="optis-select">
+        <option value="">-- Sélectionnez une optimisation --</option>
+        <!-- Les optimisations seront ajoutées ici par JavaScript -->
+    </select>
+    <button onclick="addOpti()" id="add-opti-button" disabled>Ajouter</button>
 </div>
 
 <div class="unit-list">
@@ -72,26 +73,14 @@
     <ul id="army-list">
         <!-- Les unités ajoutées apparaîtront ici -->
     </ul>
+    <h2>Optimisations de l'Armée</h2>
+    <ul id="optis-list">
+        <!-- Les optimisations ajoutées apparaîtront ici -->
+    </ul>
     <button onclick="resetArmy()">Réinitialiser l'Armée</button>
 </div>
 
 <script>
-    // Chargement des détachements
-    fetch('optis_of_astra_militarum.json')
-        .then(response => response.json())
-        .then(data => {
-            const detachmentSelect = document.getElementById('detachment-select');
-            data.forEach(detachment => {
-                const option = document.createElement('option');
-                option.value = detachment.name;
-                option.textContent = detachment.name;
-                detachmentSelect.appendChild(option);
-            });
-        })
-        .catch(error => {
-            console.error('Erreur lors du chargement des détachements:', error);
-        });
-
     // Chargement des unités
     fetch('units_of_astra_militarum.json')
         .then(response => response.json())
@@ -108,13 +97,21 @@
             console.error('Erreur lors du chargement des unités:', error);
         });
 
-    // Vérifier si un détachement est sélectionné pour activer la liste des unités
-    document.getElementById('detachment-select').addEventListener('change', function() {
-        const unitSelect = document.getElementById('unit-select');
-        const addButton = document.getElementById('add-button');
-        unitSelect.disabled = this.value === "";
-        addButton.disabled = true; // Désactiver le bouton d'ajout si aucune unité n'est sélectionnée
-    });
+    // Chargement des optimisations
+    fetch('optis_of_astra_militarum.json')
+        .then(response => response.json())
+        .then(data => {
+            const optisSelect = document.getElementById('optis-select');
+            data.forEach(opti => {
+                const option = document.createElement('option');
+                option.value = opti.name;
+                option.textContent = opti.name;
+                optisSelect.appendChild(option);
+            });
+        })
+        .catch(error => {
+            console.error('Erreur lors du chargement des optimisations:', error);
+        });
 
     // Fonction pour ajouter une unité à la liste
     function addUnit() {
@@ -138,6 +135,28 @@
         }
     }
 
+    // Fonction pour ajouter une optimisation à la liste
+    function addOpti() {
+        const optisSelect = document.getElementById('optis-select');
+        const optiName = optisSelect.value;
+        const optisList = document.getElementById('optis-list');
+
+        if (optiName) {
+            // Créer un nouvel élément de liste
+            const listItem = document.createElement('li');
+            listItem.textContent = optiName;
+
+            // Ajouter l'élément à la liste
+            optisList.appendChild(listItem);
+
+            // Enregistrer l'optimisation dans le localStorage
+            saveOpti(optiName);
+
+            // Réinitialiser la sélection
+            optisSelect.selectedIndex = 0;
+        }
+    }
+
     // Fonction pour sauvegarder l'unité dans le localStorage
     function saveUnit(unitName) {
         let army = JSON.parse(localStorage.getItem('army')) || [];
@@ -145,13 +164,22 @@
         localStorage.setItem('army', JSON.stringify(army));
     }
 
+    // Fonction pour sauvegarder l'optimisation dans le localStorage
+    function saveOpti(optiName) {
+        let optis = JSON.parse(localStorage.getItem('optimisations')) || [];
+        optis.push(optiName);
+        localStorage.setItem('optimisations', JSON.stringify(optis));
+    }
+
     // Fonction pour réinitialiser l'armée
     function resetArmy() {
         localStorage.removeItem('army');
+        localStorage.removeItem('optimisations');
         document.getElementById('army-list').innerHTML = '';
+        document.getElementById('optis-list').innerHTML = '';
     }
 
-    // Charger les unités sauvegardées au démarrage
+    // Charger les unités et optimisations sauvegardées au démarrage
     window.onload = function() {
         let army = JSON.parse(localStorage.getItem('army')) || [];
         const armyList = document.getElementById('army-list');
@@ -159,6 +187,14 @@
             const listItem = document.createElement('li');
             listItem.textContent = unit;
             armyList.appendChild(listItem);
+        });
+
+        let optis = JSON.parse(localStorage.getItem('optimisations')) || [];
+        const optisList = document.getElementById('optis-list');
+        optis.forEach(opti => {
+            const listItem = document.createElement('li');
+            listItem.textContent = opti;
+            optisList.appendChild(listItem);
         });
     };
 </script>
