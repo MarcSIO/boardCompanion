@@ -5,16 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Configuration de l'Armée - Astra Militarum</title>
     <style>
+        /* Styles de base */
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             margin: 0;
             padding: 20px;
+            color: #333;
         }
+
         h1 {
             text-align: center;
+            color: #333;
+            margin-bottom: 20px;
         }
-        .army-form, .dice-view {
+
+        /* Formulaires et conteneurs */
+        .army-form, .dice-view, .game-view, .unit-list {
             margin: 20px auto;
             max-width: 600px;
             background: #fff;
@@ -22,13 +29,33 @@
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+
         .unit-list {
-            margin-top: 20px;
+            margin-top: 30px;
         }
-        .unit-list ul {
+
+        /* Fieldsets pour une meilleure structure */
+        fieldset {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        legend {
+            font-weight: bold;
+            font-size: 1.2em;
+            padding: 0 10px;
+            color: #333;
+        }
+
+        /* Listes */
+        ul {
             list-style-type: none;
             padding: 0;
+            margin: 0;
         }
+
         .unit-list li {
             background: #e7e7e7;
             margin: 5px 0;
@@ -38,248 +65,249 @@
             justify-content: space-between;
             align-items: center;
         }
+
+        .unit-list li:nth-child(even) {
+            background-color: #f2f2f2; /* Alternance de couleur pour les listes */
+        }
+
+        /* Boutons */
         button {
             padding: 10px 15px;
-            background: #007BFF;
+            background-color: #007BFF;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            transition: background-color 0.3s ease;
         }
+
         button:hover {
-            background: #0056b3;
+            background-color: #0056b3;
         }
+
         .delete-button {
-            background: #dc3545; /* Rouge */
+            background-color: #dc3545; /* Rouge pour les boutons de suppression */
         }
+
         .delete-button:hover {
-            background: #c82333; /* Rouge foncé */
+            background-color: #c82333; /* Rouge foncé au survol */
         }
+
+        /* Formulaires */
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+            font-size: 1em;
+        }
+
+        /* Vue principale du jeu */
+        #game-view {
+            text-align: center;
+        }
+
+        #game-view h2, #game-view h3 {
+            margin: 10px 0;
+        }
+
+        /* Responsivité */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .army-form, .dice-view, .unit-list {
+                max-width: 100%;
+            }
+        }
+
     </style>
 </head>
 <body>
 
 <h1>Configuration de l'Armée - Astra Militarum</h1>
 
+<!-- Section de configuration de l'armée -->
 <div class="army-form" id="army-form">
-    <label for="unit-select">Choisir une unité :</label>
-    <select id="unit-select">
-        <option value="">-- Sélectionnez une unité --</option>
-        <!-- Les unités seront ajoutées ici par JavaScript -->
-    </select>
-    <button onclick="addUnit()" id="add-unit-button" disabled>Ajouter</button>
+    <fieldset>
+        <legend>Configurer votre armée</legend>
 
-    <label for="optis-select">Choisir une optimisation :</label>
-    <select id="optis-select">
-        <option value="">-- Sélectionnez une optimisation --</option>
-        <!-- Les optimisations seront ajoutées ici par JavaScript -->
-    </select>
-    <button onclick="addOpti()" id="add-opti-button" disabled>Ajouter</button>
+        <!-- Sélection d'unités -->
+        <label for="unit-select">Choisir une unité :</label>
+        <select id="unit-select">
+            <option value="">-- Sélectionnez une unité --</option>
+            <!-- Les unités seront ajoutées ici par JavaScript -->
+        </select>
+        <button onclick="addItem('unit-select', 'army-list', 'army', removeUnit)" id="add-unit-button" disabled>Ajouter Unité</button>
 
-    <button id="start-game-button" onclick="showDiceView()" disabled>Commencer le Jeu</button>
+        <!-- Sélection d'optimisations -->
+        <label for="optis-select">Choisir une optimisation :</label>
+        <select id="optis-select">
+            <option value="">-- Sélectionnez une optimisation --</option>
+            <!-- Les optimisations seront ajoutées ici par JavaScript -->
+        </select>
+        <button onclick="addItem('optis-select', 'optis-list', 'optimisations', removeOpti)" id="add-opti-button" disabled>Ajouter Optimisation</button>
+
+        <!-- Bouton pour démarrer le jeu -->
+        <button id="start-game-button" onclick="showDiceView()" disabled>Commencer le Jeu</button>
+    </fieldset>
 </div>
 
+<!-- Liste des unités et optimisations -->
 <div class="unit-list">
-    <h2>Unités de l'Armée</h2>
-    <ul id="army-list">
-        <!-- Les unités ajoutées apparaîtront ici -->
-    </ul>
-    <h2>Optimisations de l'Armée</h2>
-    <ul id="optis-list">
-        <!-- Les optimisations ajoutées apparaîtront ici -->
-    </ul>
-    <button onclick="resetArmy()">Réinitialiser l'Armée</button>
+    <fieldset>
+        <legend>Armée actuelle</legend>
+        <h2>Unités de l'Armée</h2>
+        <ul id="army-list">
+            <!-- Les unités ajoutées apparaîtront ici -->
+        </ul>
+        <h2>Optimisations de l'Armée</h2>
+        <ul id="optis-list">
+            <!-- Les optimisations ajoutées apparaîtront ici -->
+        </ul>
+        <button onclick="resetArmy()">Réinitialiser l'Armée</button>
+    </fieldset>
 </div>
 
-<!-- Vue pour le Gagnant du Jet de Dé -->
+<!-- Vue pour le gagnant du jet de dé -->
 <div class="dice-view" id="dice-view" style="display: none;">
-    <h2>Qui a gagné le jet de dé ?</h2>
-    <select id="winner-select">
-        <option value="">-- Sélectionnez le gagnant --</option>
-        <option value="Moi">Moi</option>
-        <option value="L'adversaire">L'adversaire</option>
-    </select>
-    <button onclick="saveWinner()">Sauvegarder le Gagnant</button>
+    <fieldset>
+        <legend>Déterminer le gagnant du jet de dé</legend>
+        <h2>Qui a gagné le jet de dé ?</h2>
+        <label for="winner-select">Sélectionner le gagnant :</label>
+        <select id="winner-select">
+            <option value="">-- Sélectionnez le gagnant --</option>
+            <option value="Moi">Moi</option>
+            <option value="L'adversaire">L'adversaire</option>
+        </select>
+        <button onclick="saveWinner()">Sauvegarder le Gagnant</button>
+    </fieldset>
 </div>
 
-
-<!-- Vue Principale de l'Application -->
+<!-- Vue principale du jeu -->
 <div class="game-view" id="game-view" style="display: none;">
-    <h2>Phase de Jeu</h2>
+    <fieldset>
+        <legend>Phase de Jeu</legend>
+        <h2>Phase de Jeu</h2>
+        <h3 id="current-turn-title">Tour Actuel : Moi</h3>
+        <h3 id="current-phase-title">Phase Actuelle : Phase de Commandement</h3>
 
-    <h3 id="current-turn-title">Tour Actuel : Moi</h3>
-    <h3 id="current-phase-title">Phase Actuelle : Phase de Commandement</h3>
+        <h3>Stratagèmes Disponibles</h3>
+        <ul id="stratagem-list">
+            <!-- Les stratagèmes seront ajoutés ici par JavaScript -->
+        </ul>
 
-    <h3>Stratagèmes Disponibles</h3>
-    <ul id="stratagem-list">
-        <!-- Les stratagèmes seront ajoutés ici par JavaScript -->
-    </ul>
-
-    <button onclick="nextPhase()" id="next-phase-button">Phase Suivante</button>
+        <button onclick="nextPhase()" id="next-phase-button">Phase Suivante</button>
+    </fieldset>
 </div>
-
 
 
 <script>
-    // Chargement des unités
-    fetch('units_of_astra_militarum.json')
-        .then(response => response.json())
-        .then(data => {
-            const unitSelect = document.getElementById('unit-select');
-            data.forEach(unit => {
-                const option = document.createElement('option');
-                option.value = unit.name;
-                option.textContent = unit.name;
-                unitSelect.appendChild(option);
-            });
-        })
-        .catch(error => {
-            console.error('Erreur lors du chargement des unités:', error);
-        });
+    document.addEventListener('DOMContentLoaded', () => {
+        loadData('units_of_astra_militarum.json', 'unit-select');
+        loadData('optis_of_astra_militarum.json', 'optis-select');
+        loadStratagems();
 
-    // Chargement des optimisations
-    fetch('optis_of_astra_militarum.json')
-        .then(response => response.json())
-        .then(data => {
-            const optisSelect = document.getElementById('optis-select');
-            data.forEach(opti => {
-                const option = document.createElement('option');
-                option.value = opti.name;
-                option.textContent = opti.name;
-                optisSelect.appendChild(option);
-            });
-        })
-        .catch(error => {
-            console.error('Erreur lors du chargement des optimisations:', error);
-        });
+        restoreFromLocalStorage('army', 'army-list', removeUnit);
+        restoreFromLocalStorage('optimisations', 'optis-list', removeOpti);
 
-
-    let stratagems = {};
-
-    // Chargement des stratagèmes
-    fetch('stratagemes_of_astramilitarum.json')
-        .then(response => response.json())
-        .then(data => {
-            stratagems = data; // Stocker les stratagèmes dans la variable
-            updateStratagems(); // Mettre à jour les stratagèmes lors du chargement
-        })
-        .catch(error => {
-            console.error('Erreur lors du chargement des stratagèmes:', error);
-        });
-
-    // Vérifier si une unité est sélectionnée pour activer le bouton d'ajout
-    document.getElementById('unit-select').addEventListener('change', function() {
-        document.getElementById('add-unit-button').disabled = this.value === "";
-        checkStartGameButton();
+        document.getElementById('unit-select').addEventListener('change', toggleButtonState);
+        document.getElementById('optis-select').addEventListener('change', toggleButtonState);
     });
 
-    // Vérifier si une optimisation est sélectionnée pour activer le bouton d'ajout
-    document.getElementById('optis-select').addEventListener('change', function() {
-        document.getElementById('add-opti-button').disabled = this.value === "";
-        checkStartGameButton();
-    });
+    function loadData(url, selectId) {
+        fetch(url)
+            .then(response => response.json())
+            .then(data => populateSelect(data, selectId))
+            .catch(error => console.error(`Erreur lors du chargement de ${url}:`, error));
+    }
 
-    // Vérifier si les unités et optimisations sont ajoutées pour activer le bouton de début
+    function populateSelect(data, selectId) {
+        const selectElement = document.getElementById(selectId);
+        data.forEach(item => {
+            const option = document.createElement('option');
+            option.value = item.name;
+            option.textContent = item.name;
+            selectElement.appendChild(option);
+        });
+    }
+
+    function toggleButtonState() {
+        const unitSelected = document.getElementById('unit-select').value !== "";
+        const optiSelected = document.getElementById('optis-select').value !== "";
+        document.getElementById('add-unit-button').disabled = !unitSelected;
+        document.getElementById('add-opti-button').disabled = !optiSelected;
+        checkStartGameButton();
+    }
+
     function checkStartGameButton() {
-        const armyList = document.getElementById('army-list');
-        const optisList = document.getElementById('optis-list');
-        document.getElementById('start-game-button').disabled =
-            armyList.children.length === 0 && optisList.children.length === 0;
+        const armyListNotEmpty = document.getElementById('army-list').children.length > 0;
+        const optisListNotEmpty = document.getElementById('optis-list').children.length > 0;
+        document.getElementById('start-game-button').disabled = !(armyListNotEmpty || optisListNotEmpty);
     }
 
-    // Fonction pour ajouter une unité à la liste
-    function addUnit() {
-        const unitSelect = document.getElementById('unit-select');
-        const unitName = unitSelect.value;
-        const armyList = document.getElementById('army-list');
-
-        if (unitName) {
-            // Créer un nouvel élément de liste
-            const listItem = document.createElement('li');
-            listItem.textContent = unitName;
-
-            // Ajouter un bouton de suppression
-            const deleteButton = document.createElement('button');
-            deleteButton.textContent = 'Supprimer';
-            deleteButton.className = 'delete-button';
-            deleteButton.onclick = function() {
-                armyList.removeChild(listItem);
-                removeUnit(unitName); // Supprime aussi du localStorage
-            };
-
-            // Ajouter l'élément à la liste
-            listItem.appendChild(deleteButton);
-            armyList.appendChild(listItem);
-
-            // Enregistrer l'unité dans le localStorage
-            saveUnit(unitName);
-
-            // Réinitialiser la sélection
-            unitSelect.selectedIndex = 0;
+    function addItem(selectId, listId, storageKey, removeCallback) {
+        const selectElement = document.getElementById(selectId);
+        const itemName = selectElement.value;
+        if (itemName) {
+            const listItem = createListItem(itemName, removeCallback);
+            document.getElementById(listId).appendChild(listItem);
+            saveToLocalStorage(storageKey, itemName);
+            selectElement.selectedIndex = 0; // Reset the select
         }
     }
 
-    // Fonction pour ajouter une optimisation à la liste
-    function addOpti() {
-        const optisSelect = document.getElementById('optis-select');
-        const optiName = optisSelect.value;
-        const optisList = document.getElementById('optis-list');
-
-        if (optiName) {
-            // Créer un nouvel élément de liste
-            const listItem = document.createElement('li');
-            listItem.textContent = optiName;
-
-            // Ajouter un bouton de suppression
-            const deleteButton = document.createElement('button');
-            deleteButton.textContent = 'Supprimer';
-            deleteButton.className = 'delete-button';
-            deleteButton.onclick = function() {
-                optisList.removeChild(listItem);
-                removeOpti(optiName); // Supprime aussi du localStorage
-            };
-
-            // Ajouter l'élément à la liste
-            listItem.appendChild(deleteButton);
-            optisList.appendChild(listItem);
-
-            // Enregistrer l'optimisation dans le localStorage
-            saveOpti(optiName);
-
-            // Réinitialiser la sélection
-            optisSelect.selectedIndex = 0;
-        }
+    function createListItem(name, removeCallback) {
+        const listItem = document.createElement('li');
+        listItem.textContent = name;
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Supprimer';
+        deleteButton.className = 'delete-button';
+        deleteButton.onclick = () => {
+            listItem.remove();
+            removeCallback(name);
+        };
+        listItem.appendChild(deleteButton);
+        return listItem;
     }
 
-    // Fonction pour supprimer une unité du localStorage
+    function saveToLocalStorage(key, item) {
+        let items = JSON.parse(localStorage.getItem(key)) || [];
+        items.push(item);
+        localStorage.setItem(key, JSON.stringify(items));
+    }
+
+    function restoreFromLocalStorage(key, listId, removeCallback) {
+        const items = JSON.parse(localStorage.getItem(key)) || [];
+        items.forEach(item => {
+            const listItem = createListItem(item, removeCallback);
+            document.getElementById(listId).appendChild(listItem);
+        });
+    }
+
     function removeUnit(unitName) {
-        let army = JSON.parse(localStorage.getItem('army')) || [];
-        army = army.filter(unit => unit !== unitName);
-        localStorage.setItem('army', JSON.stringify(army));
+        removeFromLocalStorage('army', unitName);
     }
 
-    // Fonction pour supprimer une optimisation du localStorage
     function removeOpti(optiName) {
-        let optis = JSON.parse(localStorage.getItem('optimisations')) || [];
-        optis = optis.filter(opti => opti !== optiName);
-        localStorage.setItem('optimisations', JSON.stringify(optis));
+        removeFromLocalStorage('optimisations', optiName);
     }
 
-    // Fonction pour sauvegarder l'unité dans le localStorage
-    function saveUnit(unitName) {
-        let army = JSON.parse(localStorage.getItem('army')) || [];
-        army.push(unitName);
-        localStorage.setItem('army', JSON.stringify(army));
+    function removeFromLocalStorage(key, itemName) {
+        let items = JSON.parse(localStorage.getItem(key)) || [];
+        items = items.filter(item => item !== itemName);
+        localStorage.setItem(key, JSON.stringify(items));
     }
 
-    // Fonction pour sauvegarder l'optimisation dans le localStorage
-    function saveOpti(optiName) {
-        let optis = JSON.parse(localStorage.getItem('optimisations')) || [];
-        optis.push(optiName);
-        localStorage.setItem('optimisations', JSON.stringify(optis));
-    }
-
-    // Fonction pour réinitialiser l'armée
     function resetArmy() {
         localStorage.removeItem('army');
         localStorage.removeItem('optimisations');
@@ -287,129 +315,33 @@
         document.getElementById('optis-list').innerHTML = '';
     }
 
-    // Charger les unités et optimisations sauvegardées au démarrage
-    window.onload = function() {
-        let army = JSON.parse(localStorage.getItem('army')) || [];
-        const armyList = document.getElementById('army-list');
-        army.forEach(unit => {
-            const listItem = document.createElement('li');
-            listItem.textContent = unit;
-
-            const deleteButton = document.createElement('button');
-            deleteButton.textContent = 'Supprimer';
-            deleteButton.className = 'delete-button';
-            deleteButton.onclick = function() {
-                armyList.removeChild(listItem);
-                removeUnit(unit); // Supprime aussi du localStorage
-            };
-
-            listItem.appendChild(deleteButton);
-            armyList.appendChild(listItem);
-        });
-
-        let optis = JSON.parse(localStorage.getItem('optimisations')) || [];
-        const optisList = document.getElementById('optis-list');
-        optis.forEach(opti => {
-            const listItem = document.createElement('li');
-            listItem.textContent = opti;
-
-            const deleteButton = document.createElement('button');
-            deleteButton.textContent = 'Supprimer';
-            deleteButton.className = 'delete-button';
-            deleteButton.onclick = function() {
-                optisList.removeChild(listItem);
-                removeOpti(opti); // Supprime aussi du localStorage
-            };
-
-            listItem.appendChild(deleteButton);
-            optisList.appendChild(listItem);
-        });
-    };
-
-    // Fonction pour afficher la vue du gagnant du jet de dé
-    function showDiceView() {
-        document.getElementById('army-form').style.display = 'none';
-        document.getElementById('dice-view').style.display = 'block';
+    function loadStratagems() {
+        fetch('stratagemes_of_astramilitarum.json')
+            .then(response => response.json())
+            .then(data => {
+                stratagems = data;
+                updateStratagems();
+            })
+            .catch(error => console.error('Erreur lors du chargement des stratagèmes:', error));
     }
 
-    // Fonction pour sauvegarder le gagnant du jet de dé
-    function saveWinner() {
-        const winnerSelect = document.getElementById('winner-select');
-        const winnerName = winnerSelect.value;
-        if (winnerName) {
-            localStorage.setItem('winner', winnerName);
-            showGameView(); // Afficher la vue principale
-        } else {
-            alert('Veuillez sélectionner un gagnant.');
-        }
-    }
-
-
-    // Variable pour suivre la phase actuelle
-    let currentPhaseIndex = 0;
-    let currentTurn = "Moi"; // Définir le tour initial (sera modifié en fonction du gagnant)
-    const phases = [
-        "Phase de Commandement",
-        "Phase de Mouvement",
-        "Phase Psychique",
-        "Phase de Tir",
-        "Phase de Charge",
-        "Phase de Combat",
-        "Phase de Moral"
-    ];
-
-    // Fonction pour afficher la vue principale et la première phase
+    // Gestion des phases
     function showGameView() {
         document.getElementById('dice-view').style.display = 'none';
         document.getElementById('game-view').style.display = 'block';
-
-        // Récupérer le gagnant du jet de dé pour définir le tour
-        const winner = localStorage.getItem('winner');
-        if (winner) {
-            currentTurn = winner; // Mettre à jour le tour en fonction du gagnant
-            document.getElementById('current-turn-title').textContent = `Tour Actuel : ${currentTurn}`;
-        }
+        updateTurnDisplay();
     }
 
-    // Fonction pour mettre à jour les stratagèmes en fonction de la phase et du tour
-    function updateStratagems() {
-        const turnSelect = document.getElementById('turn-select');
-        const stratagemList = document.getElementById('stratagem-list');
-        const currentPhaseTitle = document.getElementById('current-phase-title');
-
-        // Effacer la liste des stratagèmes
-        stratagemList.innerHTML = '';
-
-        // Obtenir la phase actuelle
-        const currentPhase = phases[currentPhaseIndex];
-        currentPhaseTitle.textContent = `Phase Actuelle : ${currentPhase}`;
-
-        const selectedTurn = turnSelect.value;
-
-        // Vérifier si des stratagèmes existent pour la phase et le tour sélectionnés
-        if (stratagems[currentPhase] && stratagems[currentPhase][selectedTurn]) {
-            stratagems[currentPhase][selectedTurn].forEach(stratagem => {
-                const listItem = document.createElement('li');
-                listItem.textContent = stratagem;
-                stratagemList.appendChild(listItem);
-            });
-        }
+    function updateTurnDisplay() {
+        const winner = localStorage.getItem('winner') || 'Moi';
+        document.getElementById('current-turn-title').textContent = `Tour Actuel : ${winner}`;
     }
 
-    // Fonction pour passer à la phase suivante
     function nextPhase() {
-        if (currentPhaseIndex < phases.length - 1) {
-            currentPhaseIndex++; // Passer à la phase suivante
-        } else {
-            currentPhaseIndex = 0; // Revenir à la première phase
-            // Changer le tour
-            currentTurn = (currentTurn === "Moi") ? "L'adversaire" : "Moi";
-            document.getElementById('current-turn-title').textContent = `Tour Actuel : ${currentTurn}`;
-        }
-        updateStratagems(); // Mettre à jour les stratagèmes pour la nouvelle phase
+        currentPhaseIndex = (currentPhaseIndex + 1) % phases.length;
+        currentTurn = (currentPhaseIndex === 0) ? (currentTurn === 'Moi' ? 'L\'adversaire' : 'Moi') : currentTurn;
+        updateStratagems();
     }
-
-
 
 </script>
 
