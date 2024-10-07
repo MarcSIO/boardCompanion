@@ -58,7 +58,7 @@
         <option value="">-- Sélectionnez une unité --</option>
         <!-- Les unités seront ajoutées ici par JavaScript -->
     </select>
-    <button onclick="addUnit()" id="add-button" disabled>Ajouter</button>
+    <button onclick="addUnit()" id="add-unit-button" disabled>Ajouter</button>
 
     <label for="optis-select">Choisir une optimisation :</label>
     <select id="optis-select">
@@ -112,6 +112,16 @@
         .catch(error => {
             console.error('Erreur lors du chargement des optimisations:', error);
         });
+
+    // Vérifier si une unité est sélectionnée pour activer le bouton d'ajout
+    document.getElementById('unit-select').addEventListener('change', function() {
+        document.getElementById('add-unit-button').disabled = this.value === "";
+    });
+
+    // Vérifier si une optimisation est sélectionnée pour activer le bouton d'ajout
+    document.getElementById('optis-select').addEventListener('change', function() {
+        document.getElementById('add-opti-button').disabled = this.value === "";
+    });
 
     // Fonction pour ajouter une unité à la liste
     function addUnit() {
