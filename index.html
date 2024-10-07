@@ -14,7 +14,7 @@
         h1 {
             text-align: center;
         }
-        .army-form {
+        .army-form, .dice-view {
             margin: 20px auto;
             max-width: 600px;
             background: #fff;
@@ -61,7 +61,7 @@
 
 <h1>Configuration de l'Armée - Astra Militarum</h1>
 
-<div class="army-form">
+<div class="army-form" id="army-form">
     <label for="unit-select">Choisir une unité :</label>
     <select id="unit-select">
         <option value="">-- Sélectionnez une unité --</option>
@@ -75,6 +75,8 @@
         <!-- Les optimisations seront ajoutées ici par JavaScript -->
     </select>
     <button onclick="addOpti()" id="add-opti-button" disabled>Ajouter</button>
+
+    <button id="start-game-button" onclick="showDiceView()" disabled>Commencer le Jeu</button>
 </div>
 
 <div class="unit-list">
@@ -87,6 +89,13 @@
         <!-- Les optimisations ajoutées apparaîtront ici -->
     </ul>
     <button onclick="resetArmy()">Réinitialiser l'Armée</button>
+</div>
+
+<!-- Vue pour le Gagnant du Jet de Dé -->
+<div class="dice-view" id="dice-view" style="display: none;">
+    <h2>Qui a gagné le jet de dé ?</h2>
+    <input type="text" id="winner-name" placeholder="Nom du joueur gagnant" />
+    <button onclick="saveWinner()">Sauvegarder le Gagnant</button>
 </div>
 
 <script>
@@ -125,12 +134,22 @@
     // Vérifier si une unité est sélectionnée pour activer le bouton d'ajout
     document.getElementById('unit-select').addEventListener('change', function() {
         document.getElementById('add-unit-button').disabled = this.value === "";
+        checkStartGameButton();
     });
 
     // Vérifier si une optimisation est sélectionnée pour activer le bouton d'ajout
     document.getElementById('optis-select').addEventListener('change', function() {
         document.getElementById('add-opti-button').disabled = this.value === "";
+        checkStartGameButton();
     });
+
+    // Vérifier si les unités et optimisations sont ajoutées pour activer le bouton de début
+    function checkStartGameButton() {
+        const armyList = document.getElementById('army-list');
+        const optisList = document.getElementById('optis-list');
+        document.getElementById('start-game-button').disabled =
+            armyList.children.length === 0 && optisList.children.length === 0;
+    }
 
     // Fonction pour ajouter une unité à la liste
     function addUnit() {
@@ -270,6 +289,21 @@
             optisList.appendChild(listItem);
         });
     };
+
+    // Fonction pour afficher la vue du gagnant du jet de dé
+    function showDiceView() {
+        document.getElementById('army-form').style.display = 'none';
+        document.getElementById('dice-view').style.display = 'block';
+    }
+
+    // Fonction pour sauvegarder le gagnant du jet de dé
+    function saveWinner() {
+        const winnerName = document.getElementById('winner-name').value.trim();
+        if (winnerName) {
+            localStorage.setItem('winner', winnerName);
+            alert(`Le gagnant du jet de dé est : ${winnerName}`);
+        }
+    }
 </script>
 
 </body>
