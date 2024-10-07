@@ -393,16 +393,19 @@
         }
     }
 
-
     // Fonction pour passer à la phase suivante
     function nextPhase() {
         if (currentPhaseIndex < phases.length - 1) {
             currentPhaseIndex++; // Passer à la phase suivante
-            updateStratagems(); // Mettre à jour les stratagèmes pour la nouvelle phase
         } else {
-            alert('Vous avez terminé toutes les phases de jeu.');
+            currentPhaseIndex = 0; // Revenir à la première phase
+            // Changer le tour
+            const turnSelect = document.getElementById('turn-select');
+            turnSelect.value = (turnSelect.value === "Moi") ? "L'adversaire" : "Moi";
         }
+        updateStratagems(); // Mettre à jour les stratagèmes pour la nouvelle phase
     }
+
 
 
 </script>
