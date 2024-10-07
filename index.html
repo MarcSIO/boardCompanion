@@ -147,7 +147,7 @@
             <option value="">-- Sélectionnez une unité --</option>
             <!-- Les unités seront ajoutées ici par JavaScript -->
         </select>
-        <button onclick="addItem('unit-select', 'army-list', 'army', removeUnit)" id="add-unit-button" disabled>Ajouter Unité</button>
+        <button onclick="addSelectedItemToList('unit-select', 'army-list', 'army', removeUnit)" id="add-unit-button" disabled>Ajouter Unité</button>
 
         <!-- Sélection d'optimisations -->
         <label for="optis-select">Choisir une optimisation :</label>
@@ -155,7 +155,7 @@
             <option value="">-- Sélectionnez une optimisation --</option>
             <!-- Les optimisations seront ajoutées ici par JavaScript -->
         </select>
-        <button onclick="addItem('optis-select', 'optis-list', 'optimisations', removeOpti)" id="add-opti-button" disabled>Ajouter Optimisation</button>
+        <button onclick="addSelectedItemToList('optis-select', 'optis-list', 'optimisations', removeOpti)" id="add-opti-button" disabled>Ajouter Optimisation</button>
 
         <!-- Bouton pour démarrer le jeu -->
         <button id="start-game-button" onclick="showDiceView()" disabled>Commencer le Jeu</button>
@@ -212,19 +212,19 @@
 
 
 <script>
+    let currentPhaseIndex = localStorage.getItem('currentPhaseIndex') || 0;
+    let currentTurn = localStorage.getItem('currentTurn') || 'Moi';
+
     document.addEventListener('DOMContentLoaded', () => {
-        loadData('units_of_astra_militarum.json', 'unit-select');
-        loadData('optis_of_astra_militarum.json', 'optis-select');
+        loadDataToSelect('units_of_astra_militarum.json', 'unit-select');
+        loadDataToSelect('optis_of_astra_militarum.json', 'optis-select');
         loadStratagems();
 
-        restoreFromLocalStorage('army', 'army-list', removeUnit);
-        restoreFromLocalStorage('optimisations', 'optis-list', removeOpti);
-
-        document.getElementById('unit-select').addEventListener('change', toggleButtonState);
-        document.getElementById('optis-select').addEventListener('change', toggleButtonState);
+        restoreListFromLocalStorage('army', 'army-list', removeUnit);
+        restoreListFromLocalStorage('optimisations', 'optis-list', removeOpti);
     });
 
-    function loadData(url, selectId) {
+    function loadDataToSelect(url, selectId) {
         fetch(url)
             .then(response => response.json())
             .then(data => populateSelect(data, selectId))
@@ -241,27 +241,31 @@
         });
     }
 
-    function toggleButtonState() {
-        const unitSelected = document.getElementById('unit-select').value !== "";
-        const optiSelected = document.getElementById('optis-select').value !== "";
-        document.getElementById('add-unit-button').disabled = !unitSelected;
-        document.getElementById('add-opti-button').disabled = !optiSelected;
-        checkStartGameButton();
+    function loadStratagems() {
+        fetch('stratagemes_of_astramilitarum.json')
+            .then(response => response.json())
+            .then(data => {
+                const stratagems = data;
+                updateStratagems();
+            })
+            .catch(error => console.error('Erreur lors du chargement des stratagèmes:', error));
     }
 
-    function checkStartGameButton() {
-        const armyListNotEmpty = document.getElementById('army-list').children.length > 0;
-        const optisListNotEmpty = document.getElementById('optis-list').children.length > 0;
-        document.getElementById('start-game-button').disabled = !(armyListNotEmpty || optisListNotEmpty);
+    function restoreListFromLocalStorage(key, listId, removeCallback) {
+        const items = JSON.parse(localStorage.getItem(key)) || [];
+        items.forEach(item => {
+            const listItem = createListItem(item, removeCallback);
+            document.getElementById(listId).appendChild(listItem);
+        });
     }
 
-    function addItem(selectId, listId, storageKey, removeCallback) {
+    function addSelectedItemToList(selectId, listId, storageKey, removeCallback) {
         const selectElement = document.getElementById(selectId);
         const itemName = selectElement.value;
         if (itemName) {
             const listItem = createListItem(itemName, removeCallback);
             document.getElementById(listId).appendChild(listItem);
-            saveToLocalStorage(storageKey, itemName);
+            addListItemInLocalStorage(storageKey, itemName);
             selectElement.selectedIndex = 0; // Reset the select
         }
     }
@@ -280,29 +284,21 @@
         return listItem;
     }
 
-    function saveToLocalStorage(key, item) {
+    function addListItemInLocalStorage(key, item) {
         let items = JSON.parse(localStorage.getItem(key)) || [];
         items.push(item);
         localStorage.setItem(key, JSON.stringify(items));
     }
 
-    function restoreFromLocalStorage(key, listId, removeCallback) {
-        const items = JSON.parse(localStorage.getItem(key)) || [];
-        items.forEach(item => {
-            const listItem = createListItem(item, removeCallback);
-            document.getElementById(listId).appendChild(listItem);
-        });
-    }
-
     function removeUnit(unitName) {
-        removeFromLocalStorage('army', unitName);
+        removeListItemFromLocalStorage('army', unitName);
     }
 
     function removeOpti(optiName) {
-        removeFromLocalStorage('optimisations', optiName);
+        removeListItemFromLocalStorage('optimisations', optiName);
     }
 
-    function removeFromLocalStorage(key, itemName) {
+    function removeListItemFromLocalStorage(key, itemName) {
         let items = JSON.parse(localStorage.getItem(key)) || [];
         items = items.filter(item => item !== itemName);
         localStorage.setItem(key, JSON.stringify(items));
@@ -315,17 +311,33 @@
         document.getElementById('optis-list').innerHTML = '';
     }
 
-    function loadStratagems() {
-        fetch('stratagemes_of_astramilitarum.json')
-            .then(response => response.json())
-            .then(data => {
-                stratagems = data;
-                updateStratagems();
-            })
-            .catch(error => console.error('Erreur lors du chargement des stratagèmes:', error));
-    }
+
 
     // Gestion des phases
+    function saveWinner() {
+        const winnerSelect = document.getElementById('winner-select');
+        const winnerName = winnerSelect.value;
+
+        if (winnerName) {
+            // Enregistrer le gagnant dans le localStorage
+            currentTurn = winnerName;
+            localStorage.setItem('currentTurn', currentTurn);
+
+            // Masquer la vue du jet de dé et afficher la vue principale du jeu
+            showGameView();
+        } else {
+            alert('Veuillez sélectionner un gagnant.');
+        }
+    }
+
+    function showDiceView() {
+        // Masquer la section de configuration de l'armée
+        document.getElementById('army-form').style.display = 'none';
+
+        // Afficher la vue du gagnant du jet de dé
+        document.getElementById('dice-view').style.display = 'block';
+    }
+
     function showGameView() {
         document.getElementById('dice-view').style.display = 'none';
         document.getElementById('game-view').style.display = 'block';
@@ -333,13 +345,24 @@
     }
 
     function updateTurnDisplay() {
-        const winner = localStorage.getItem('winner') || 'Moi';
-        document.getElementById('current-turn-title').textContent = `Tour Actuel : ${winner}`;
+        const currentTurn = localStorage.getItem('currentTurn') || 'Moi';
+        document.getElementById('current-turn-title').textContent = `Tour Actuel : ${currentTurn}`;
     }
+    const phases = [
+        "Phase de Commandement",
+        "Phase de Mouvement",
+        "Phase Psychique",
+        "Phase de Tir",
+        "Phase de Charge",
+        "Phase de Combat",
+        "Phase de Moral"
+    ];
 
     function nextPhase() {
         currentPhaseIndex = (currentPhaseIndex + 1) % phases.length;
         currentTurn = (currentPhaseIndex === 0) ? (currentTurn === 'Moi' ? 'L\'adversaire' : 'Moi') : currentTurn;
+        localStorage.setItem('currentPhaseIndex', currentPhaseIndex);
+        localStorage.setItem('currentTurn', currentTurn);
         updateStratagems();
     }
 
