@@ -362,7 +362,13 @@
     function showGameView() {
         document.getElementById('dice-view').style.display = 'none';
         document.getElementById('game-view').style.display = 'block';
-        updateStratagems(); // Afficher les stratagèmes pour la première phase
+
+        // Récupérer le gagnant du jet de dé pour définir le tour
+        const winner = localStorage.getItem('winner');
+        if (winner) {
+            currentTurn = winner; // Mettre à jour le tour en fonction du gagnant
+            document.getElementById('current-turn-title').textContent = `Tour Actuel : ${currentTurn}`;
+        }
     }
 
     // Fonction pour mettre à jour les stratagèmes en fonction de la phase et du tour
