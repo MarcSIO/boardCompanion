@@ -1,12 +1,184 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello World</title>
+    <title>Configuration de l'Armée - Astra Militarum</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .army-form {
+            margin: 20px auto;
+            max-width: 600px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .unit-list {
+            margin-top: 20px;
+        }
+        .unit-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .unit-list li {
+            background: #e7e7e7;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 15px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <h1>Hello, World!</h1>
-    <p>Bienvenue sur GitHub Pages !</p>
+
+<h1>Configuration de l'Armée</h1>
+
+<div class="army-form">
+    <label for="army-select">Choisir le nom de l'armée :</label>
+    <select id="army-select" onchange="updateUnitList()">
+        <option value="">-- Sélectionnez une armée --</option>
+        <option value="Astra Militarum">Astra Militarum</option>
+        <option value="Space Marines">Space Marines</option>
+        <option value="Eldar">Eldar</option>
+        <!-- Ajoute d'autres armées si nécessaire -->
+    </select>
+
+    <label for="unit-select">Choisir une unité :</label>
+    <select id="unit-select" disabled>
+        <!-- Les unités seront ajoutées ici -->
+    </select>
+    <button onclick="addUnit()" disabled id="add-button">Ajouter</button>
+</div>
+
+<div class="unit-list">
+    <h2>Unités de l'Armée</h2>
+    <ul id="army-list">
+        <!-- Les unités ajoutées apparaîtront ici -->
+    </ul>
+    <button onclick="resetArmy()">Réinitialiser l'Armée</button>
+</div>
+
+<script>
+    const unitsByArmy = {
+        "Astra Militarum": [
+            "Seigneur Solaire Leontus",
+            "Ursula Creed",
+            "Commandant Blindé",
+            "Escouade d'État-Major de Peloton",
+            "Straken “Poing de Fer”",
+            "Psyker Primaris"
+        ],
+        "Space Marines": [
+            "Capitaine",
+            "Escouade d'Intercessors",
+            "Dreadnought",
+            "Primaris Librarian"
+        ],
+        "Eldar": [
+            "Autarque",
+            "Escouade de Gardes",
+            "Wraithknight",
+            "Farseer"
+        ]
+    };
+
+    // Met à jour la liste des unités en fonction de l'armée sélectionnée
+    function updateUnitList() {
+        const armySelect = document.getElementById('army-select');
+        const unitSelect = document.getElementById('unit-select');
+        const addButton = document.getElementById('add-button');
+        const selectedArmy = armySelect.value;
+
+        unitSelect.innerHTML = ""; // Vider les unités précédentes
+        addButton.disabled = true; // Désactiver le bouton d'ajout
+
+        if (selectedArmy) {
+            // Activer la sélection d'unités
+            unitSelect.disabled = false;
+
+            // Ajouter les unités à la liste déroulante
+            unitsByArmy[selectedArmy].forEach(unit => {
+                const option = document.createElement('option');
+                option.value = unit;
+                option.textContent = unit;
+                unitSelect.appendChild(option);
+            });
+        } else {
+            unitSelect.disabled = true; // Désactiver si aucune armée sélectionnée
+        }
+    }
+
+    // Fonction pour ajouter une unité à la liste
+    function addUnit() {
+        const unitSelect = document.getElementById('unit-select');
+        const unitName = unitSelect.value;
+        const armyList = document.getElementById('army-list');
+
+        if (unitName) {
+            // Créer un nouvel élément de liste
+            const listItem = document.createElement('li');
+            listItem.textContent = unitName;
+
+            // Ajouter l'élément à la liste
+            armyList.appendChild(listItem);
+
+            // Enregistrer l'unité dans le localStorage
+            saveUnit(unitName);
+
+            // Réinitialiser la sélection
+            unitSelect.selectedIndex = 0;
+            document.getElementById('add-button').disabled = true;
+        }
+    }
+
+    // Fonction pour sauvegarder l'unité dans le localStorage
+    function saveUnit(unitName) {
+        let army = JSON.parse(localStorage.getItem('army')) || [];
+        army.push(unitName);
+        localStorage.setItem('army', JSON.stringify(army));
+    }
+
+    // Fonction pour réinitialiser l'armée
+    function resetArmy() {
+        localStorage.removeItem('army');
+        document.getElementById('army-list').innerHTML = '';
+    }
+
+    // Vérifier si une unité est sélectionnée pour activer le bouton d'ajout
+    document.getElementById('unit-select').addEventListener('change', function() {
+        document.getElementById('add-button').disabled = this.value === "";
+    });
+
+    // Charger les unités sauvegardées au démarrage
+    window.onload = function() {
+        let army = JSON.parse(localStorage.getItem('army')) || [];
+        const armyList = document.getElementById('army-list');
+        army.forEach(unit => {
+            const listItem = document.createElement('li');
+            listItem.textContent = unit;
+            armyList.appendChild(listItem);
+        });
+    };
+</script>
+
 </body>
 </html>
