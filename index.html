@@ -94,7 +94,11 @@
 <!-- Vue pour le Gagnant du Jet de Dé -->
 <div class="dice-view" id="dice-view" style="display: none;">
     <h2>Qui a gagné le jet de dé ?</h2>
-    <input type="text" id="winner-name" placeholder="Nom du joueur gagnant" />
+    <select id="winner-select">
+        <option value="">-- Sélectionnez le gagnant --</option>
+        <option value="Moi">Moi</option>
+        <option value="L'adversaire">L'adversaire</option>
+    </select>
     <button onclick="saveWinner()">Sauvegarder le Gagnant</button>
 </div>
 
@@ -298,12 +302,16 @@
 
     // Fonction pour sauvegarder le gagnant du jet de dé
     function saveWinner() {
-        const winnerName = document.getElementById('winner-name').value.trim();
+        const winnerSelect = document.getElementById('winner-select');
+        const winnerName = winnerSelect.value;
         if (winnerName) {
             localStorage.setItem('winner', winnerName);
             alert(`Le gagnant du jet de dé est : ${winnerName}`);
+        } else {
+            alert('Veuillez sélectionner un gagnant.');
         }
     }
+
 </script>
 
 </body>
