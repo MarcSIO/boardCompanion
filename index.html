@@ -53,12 +53,18 @@
 <h1>Configuration de l'Armée - Astra Militarum</h1>
 
 <div class="army-form">
+    <label for="detachment-select">Choisir un détachement :</label>
+    <select id="detachment-select">
+        <option value="">-- Sélectionnez un détachement --</option>
+        <!-- Les détachements seront ajoutés ici par JavaScript -->
+    </select>
+
     <label for="unit-select">Choisir une unité :</label>
-    <select id="unit-select">
+    <select id="unit-select" disabled>
         <option value="">-- Sélectionnez une unité --</option>
         <!-- Les unités seront ajoutées ici par JavaScript -->
     </select>
-    <button onclick="addUnit()" id="add-button">Ajouter</button>
+    <button onclick="addUnit()" id="add-button" disabled>Ajouter</button>
 </div>
 
 <div class="unit-list">
@@ -70,7 +76,23 @@
 </div>
 
 <script>
-    // Charger les unités depuis le fichier JSON
+    // Chargement des détachements
+    fetch('optis_of_astra_militarum.json')
+        .then(response => response.json())
+        .then(data => {
+            const detachmentSelect = document.getElementById('detachment-select');
+            data.forEach(detachment => {
+                const option = document.createElement('option');
+                option.value = detachment.name;
+                option.textContent = detachment.name;
+                detachmentSelect.appendChild(option);
+            });
+        })
+        .catch(error => {
+            console.error('Erreur lors du chargement des détachements:', error);
+        });
+
+    // Chargement des unités
     fetch('units_of_astra_militarum.json')
         .then(response => response.json())
         .then(data => {
@@ -85,6 +107,14 @@
         .catch(error => {
             console.error('Erreur lors du chargement des unités:', error);
         });
+
+    // Vérifier si un détachement est sélectionné pour activer la liste des unités
+    document.getElementById('detachment-select').addEventListener('change', function() {
+        const unitSelect = document.getElementById('unit-select');
+        const addButton = document.getElementById('add-button');
+        unitSelect.disabled = this.value === "";
+        addButton.disabled = true; // Désactiver le bouton d'ajout si aucune unité n'est sélectionnée
+    });
 
     // Fonction pour ajouter une unité à la liste
     function addUnit() {
