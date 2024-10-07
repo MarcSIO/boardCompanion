@@ -107,12 +107,7 @@
 <div class="game-view" id="game-view" style="display: none;">
     <h2>Phase de Jeu</h2>
 
-    <label for="turn-select">Sélectionner le tour :</label>
-    <select id="turn-select" onchange="updateStratagems()">
-        <option value="Moi">Moi</option>
-        <option value="L'adversaire">L'adversaire</option>
-    </select>
-
+    <h3 id="current-turn-title">Tour Actuel : Moi</h3>
     <h3 id="current-phase-title">Phase Actuelle : Phase de Commandement</h3>
 
     <h3>Stratagèmes Disponibles</h3>
@@ -122,6 +117,7 @@
 
     <button onclick="nextPhase()" id="next-phase-button">Phase Suivante</button>
 </div>
+
 
 
 <script>
@@ -351,6 +347,7 @@
 
     // Variable pour suivre la phase actuelle
     let currentPhaseIndex = 0;
+    let currentTurn = "Moi"; // Définir le tour initial (sera modifié en fonction du gagnant)
     const phases = [
         "Phase de Commandement",
         "Phase de Mouvement",
@@ -400,8 +397,8 @@
         } else {
             currentPhaseIndex = 0; // Revenir à la première phase
             // Changer le tour
-            const turnSelect = document.getElementById('turn-select');
-            turnSelect.value = (turnSelect.value === "Moi") ? "L'adversaire" : "Moi";
+            currentTurn = (currentTurn === "Moi") ? "L'adversaire" : "Moi";
+            document.getElementById('current-turn-title').textContent = `Tour Actuel : ${currentTurn}`;
         }
         updateStratagems(); // Mettre à jour les stratagèmes pour la nouvelle phase
     }
