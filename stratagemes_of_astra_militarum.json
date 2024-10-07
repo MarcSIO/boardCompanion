@@ -1,0 +1,65 @@
+{
+  "Phase de Commandement": {
+    "Moi": [
+      "Mobiliser les ressources",
+      "Aptitude tactique de commandement"
+    ],
+    "L'adversaire": [
+      "Perturbation de la stratégie"
+    ]
+  },
+  "Phase de Mouvement": {
+    "Moi": [
+      "Manœuvre de flanc",
+      "Réorganisation rapide"
+    ],
+    "L'adversaire": [
+      "Contre-mesure"
+    ]
+  },
+  "Phase Psychique": {
+    "Moi": [
+      "Invocation mentale",
+      "Protection mentale"
+    ],
+    "L'adversaire": [
+      "Dissipation"
+    ]
+  },
+  "Phase de Tir": {
+    "Moi": [
+      "Tir de suppression",
+      "Feu nourri"
+    ],
+    "L'adversaire": [
+      "Couverture"
+    ]
+  },
+  "Phase de Charge": {
+    "Moi": [
+      "Charge éclair",
+      "Charge stratégique"
+    ],
+    "L'adversaire": [
+      "Attaque d'opportunité"
+    ]
+  },
+  "Phase de Combat": {
+    "Moi": [
+      "Assaut brutal",
+      "Défense acharnée"
+    ],
+    "L'adversaire": [
+      "Riposte"
+    ]
+  },
+  "Phase de Moral": {
+    "Moi": [
+      "Rassemblement des troupes",
+      "Ralliement"
+    ],
+    "L'adversaire": [
+      "Effondrement"
+    ]
+  }
+}

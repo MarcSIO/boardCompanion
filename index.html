@@ -102,6 +102,28 @@
     <button onclick="saveWinner()">Sauvegarder le Gagnant</button>
 </div>
 
+
+<!-- Vue Principale de l'Application -->
+<div class="game-view" id="game-view" style="display: none;">
+    <h2>Phase de Jeu</h2>
+
+    <label for="turn-select">Sélectionner le tour :</label>
+    <select id="turn-select" onchange="updateStratagems()">
+        <option value="Moi">Moi</option>
+        <option value="L'adversaire">L'adversaire</option>
+    </select>
+
+    <h3 id="current-phase-title">Phase Actuelle : Phase de Commandement</h3>
+
+    <h3>Stratagèmes Disponibles</h3>
+    <ul id="stratagem-list">
+        <!-- Les stratagèmes seront ajoutés ici par JavaScript -->
+    </ul>
+
+    <button onclick="nextPhase()" id="next-phase-button">Phase Suivante</button>
+</div>
+
+
 <script>
     // Chargement des unités
     fetch('units_of_astra_militarum.json')
@@ -133,6 +155,20 @@
         })
         .catch(error => {
             console.error('Erreur lors du chargement des optimisations:', error);
+        });
+
+
+    let stratagems = {};
+
+    // Chargement des stratagèmes
+    fetch('stratagemes_of_astramilitarum.json')
+        .then(response => response.json())
+        .then(data => {
+            stratagems = data; // Stocker les stratagèmes dans la variable
+            updateStratagems(); // Mettre à jour les stratagèmes lors du chargement
+        })
+        .catch(error => {
+            console.error('Erreur lors du chargement des stratagèmes:', error);
         });
 
     // Vérifier si une unité est sélectionnée pour activer le bouton d'ajout
@@ -306,11 +342,68 @@
         const winnerName = winnerSelect.value;
         if (winnerName) {
             localStorage.setItem('winner', winnerName);
-            alert(`Le gagnant du jet de dé est : ${winnerName}`);
+            showGameView(); // Afficher la vue principale
         } else {
             alert('Veuillez sélectionner un gagnant.');
         }
     }
+
+
+    // Variable pour suivre la phase actuelle
+    let currentPhaseIndex = 0;
+    const phases = [
+        "Phase de Commandement",
+        "Phase de Mouvement",
+        "Phase Psychique",
+        "Phase de Tir",
+        "Phase de Charge",
+        "Phase de Combat",
+        "Phase de Moral"
+    ];
+
+    // Fonction pour afficher la vue principale et la première phase
+    function showGameView() {
+        document.getElementById('dice-view').style.display = 'none';
+        document.getElementById('game-view').style.display = 'block';
+        updateStratagems(); // Afficher les stratagèmes pour la première phase
+    }
+
+    // Fonction pour mettre à jour les stratagèmes en fonction de la phase et du tour
+    function updateStratagems() {
+        const turnSelect = document.getElementById('turn-select');
+        const stratagemList = document.getElementById('stratagem-list');
+        const currentPhaseTitle = document.getElementById('current-phase-title');
+
+        // Effacer la liste des stratagèmes
+        stratagemList.innerHTML = '';
+
+        // Obtenir la phase actuelle
+        const currentPhase = phases[currentPhaseIndex];
+        currentPhaseTitle.textContent = `Phase Actuelle : ${currentPhase}`;
+
+        const selectedTurn = turnSelect.value;
+
+        // Vérifier si des stratagèmes existent pour la phase et le tour sélectionnés
+        if (stratagems[currentPhase] && stratagems[currentPhase][selectedTurn]) {
+            stratagems[currentPhase][selectedTurn].forEach(stratagem => {
+                const listItem = document.createElement('li');
+                listItem.textContent = stratagem;
+                stratagemList.appendChild(listItem);
+            });
+        }
+    }
+
+
+    // Fonction pour passer à la phase suivante
+    function nextPhase() {
+        if (currentPhaseIndex < phases.length - 1) {
+            currentPhaseIndex++; // Passer à la phase suivante
+            updateStratagems(); // Mettre à jour les stratagèmes pour la nouvelle phase
+        } else {
+            alert('Vous avez terminé toutes les phases de jeu.');
+        }
+    }
+
 
 </script>
 
