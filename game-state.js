@@ -1,6 +1,5 @@
 let currentPhaseIndex;
 let currentTurn;
-let stratagems;
 const phases = [
     "Phase de Commandement",
     "Phase de Mouvement",
@@ -68,6 +67,7 @@ function populateSratagems(data, divId) {
         const listItem = createStratagemeListItem(item)
         divElement.appendChild(listItem);
     });
+    updateStratagems();
 }
 
 function restoreListFromLocalStorage(key, listId, removeCallback) {
@@ -162,7 +162,6 @@ function showGameView() {
     document.getElementById('dice-view').style.display = 'none';
     document.getElementById('game-view').style.display = 'block';
     updateTurnDisplay();
-    updateStratagems();
 }
 
 function updateTurnDisplay() {
@@ -171,17 +170,51 @@ function updateTurnDisplay() {
 }
 
 function nextPhase() {
+    const oldCurrentIndex = currentPhaseIndex;
     currentPhaseIndex = (currentPhaseIndex + 1) % phases.length;
+    if(oldCurrentIndex == currentPhaseIndex){
+        currentPhaseIndex = (currentPhaseIndex + 1) % phases.length;
+    }
     currentTurn = (currentPhaseIndex === 0) ? (currentTurn === 'Moi' ? 'L\'adversaire' : 'Moi') : currentTurn;
     document.getElementById('current-turn-value').textContent = currentTurn;
     document.getElementById('current-phase-value').textContent = phases[currentPhaseIndex];
     localStorage.setItem('currentPhaseIndex', currentPhaseIndex);
     localStorage.setItem('currentTurn', currentTurn);
+    console.log('current phase index');
+    console.log(currentPhaseIndex);
     updateStratagems();
 }
 
-function updateStratagems() {
+function showSelector(query){
+    console.log(query);
+    let selected = document.querySelectorAll(query);
+    selected.forEach(item => {
+        item.style.display = 'block';
+    })
+}
 
+function updateStratagems() {
+    console.log("updateStratagems");
+    let query_any_any = ".stratagem-turn-any.stratagem-phase-any";
+    let query_any_current = ".stratagem-turn-any.stratagem-phase-" + currentPhaseIndex;
+    let query_current_any;
+    let query_current_current;
+    if(currentTurn == "Moi"){
+        query_current_any = ".stratagem-turn-me.stratagem-phase-any";
+        query_current_current = ".stratagem-turn-me.stratagem-phase-" + currentPhaseIndex;
+    }
+    else {
+        query_current_any = ".stratagem-turn-opponent.stratagem-phase-any";
+        query_current_current = ".stratagem-turn-opponent.stratagem-phase-" + currentPhaseIndex;
+    }
+    let selected = document.querySelectorAll(".stratagem-card");
+    selected.forEach(item => {
+        item.style.display = 'none';
+    })
+    showSelector(query_any_any);
+    showSelector(query_any_current);
+    showSelector(query_current_any);
+    showSelector(query_current_current);
 }
 
 function mettreEnGras(str) {
@@ -189,7 +222,20 @@ function mettreEnGras(str) {
 }
 function createStratagemeListItem(item) {
     const card = document.createElement("div");
-    card.classList = "stratagem-card";
+    card.classList = "stratagem-card stratagem-phase-"
+    if(item?.phaseIndex || item.phaseIndex===0) {
+        card.classList += item.phaseIndex;
+    }
+    else {
+        card.classList += "any";
+    }
+    card.classList += " stratagem-turn-"
+    if(item?.turn) {
+        card.classList += item.turn;
+    }
+    else {
+        card.classList += "any";
+    }
     const title = document.createElement("div");
     title.classList = "stratagem-title";
     title.textContent = mettreEnGras(item.name);
@@ -216,6 +262,7 @@ function createStratagemeListItem(item) {
     if(item?.restrictions) {
         card.appendChild(restrictions);
     }
+    card.style.display = 'none';
     return card;
 }
 
