@@ -9,6 +9,9 @@ const phases = [
     "Phase de Combat",
     "Phase de Moral"
 ];
+const lexique = {
+    "Réserve Stratégique":"vous aurez la possibilité d’arriver sur le champ de bataille même dans la zone de déploiement adverse"
+};
 
 document.addEventListener('DOMContentLoaded', async () => {
     loadDataToSelect('units_of_astra_militarum.json', 'unit-select');
@@ -67,6 +70,7 @@ function populateSratagems(data, divId) {
         const listItem = createStratagemeListItem(item)
         divElement.appendChild(listItem);
     });
+    lexiqueSelector();
     updateStratagems();
 }
 
@@ -188,7 +192,6 @@ function nextPhase() {
 }
 
 function showSelector(query){
-    console.log(query);
     let selected = document.querySelectorAll(query);
     selected.forEach(item => {
         item.style.display = 'block';
@@ -196,7 +199,6 @@ function showSelector(query){
 }
 
 function updateStratagems() {
-    console.log("updateStratagems");
     let query_any_any = ".stratagem-turn-any.stratagem-phase-any";
     let query_any_current = ".stratagem-turn-any.stratagem-phase-" + currentPhaseIndex;
     let query_current_any;
@@ -266,6 +268,18 @@ function createStratagemeListItem(item) {
     }
     card.style.display = 'none';
     return card;
+}
+
+function lexiqueSelector(){
+    console.log("lexiqueSelector");
+    let selected = document.querySelectorAll(".stratagem-card");
+    selected.forEach(item => {
+        Object.keys(lexique).forEach(key => {
+            item.innerHTML = item.innerHTML
+                .replace(key,"<span class=\"lexique-word\" " +
+                    "data-lexique=\""+lexique[key]+"\">"+key+"</span>");
+        })
+    })
 }
 
 function gameReset() {

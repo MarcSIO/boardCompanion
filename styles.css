@@ -170,3 +170,31 @@ select {
     color: #770d0d;
     font-size: 0.9em;
 }
+
+.lexique-word {
+    position: relative;
+    font-weight:bold;
+    color:gray;
+}
+
+.lexique-word::after {
+    position: absolute;
+    content: attr(data-lexique);
+    display: none;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    min-height: 1rem;
+    z-index:100;
+    background-color: white;
+}
+
+.lexique-word:hover::after {
+    display: block;
+    font-weight:normal;
+    color:black;
+    background-color: rgba(211, 211, 211, 0.89);
+    border-radius: 2px;
+    border: 2px dotted white;
+}

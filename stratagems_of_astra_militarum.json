@@ -6,8 +6,8 @@
     "description": "L’Astra Militarum peut faire appel à des réserves de soldats quasi inépuisables.",
     "when": "À n’importe quelle phase.",
     "target": "1 unité **Régiment** de votre armée qui vient d’être détruite. Vous pouvez utiliser ce Stratagème sur cette unité même si elle vient d’être détruite.",
-    "effect": " Ajoutez une nouvelle unité à votre armée identique à votre unité détruite, en Réserve Stratégique, à son Effectif Initial, et avec tous ses PV initiaux.",
-    "restrictions": " Ce Stratagème ne peut pas être utilisé pour restituer des unités **Personnage** à des unités Attachées."
+    "effect": "Ajoutez une nouvelle unité à votre armée identique à votre unité détruite, en Réserve Stratégique, à son Effectif Initial, et avec tous ses PV initiaux.",
+    "restrictions": "Ce Stratagème ne peut pas être utilisé pour restituer des unités **Personnage** à des unités Attachées."
   },
   {
     "name": "QUADRILLAGE DE TIRS",
@@ -17,7 +17,7 @@
     "when": "À votre phase de Tir.",
     "turn": "me",
     "phaseIndex": 3,
-    "target": " 1 unité **Régiment** ou **Escadron** de votre armée qui n’a pas été choisie pour tirer à cette phase.",
+    "target": "1 unité **Régiment** ou **Escadron** de votre armée qui n’a pas été choisie pour tirer à cette phase.",
     "effect": "Après que votre unité a résolu ses attaques, choisissez 1 unité ennemie qui a été ciblée par au moins 1 de ces attaques. Jusqu’à la fin de la phase, chaque fois qu’une attaque est faite contre cette unité ennemie par une figurine **Régiment** ou **Escadron** de votre armée, sauf si l’unité attaquante est Ébranlée, améliorez de 1 la caractéristique de Pénétration d’Armure de l’attaque."
   },
   {
@@ -50,7 +50,7 @@
     "when": "À la phase de Commandement adverse.",
     "turn": "opponent",
     "phaseIndex": 0,
-    "target": " 1 unité **Officier Astra Militarum** de votre armée.",
+    "target": "1 unité **Officier Astra Militarum** de votre armée.",
     "effect": "Votre **Officier** peut donner 1 Ordre comme s’il s’agissait de votre phase de Commandement.",
     "restrictions": "Votre Officier ne peut pas donner cet Ordre à une unité Ébranlée"
   },
