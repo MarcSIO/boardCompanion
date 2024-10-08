@@ -1,0 +1,172 @@
+/* Styles de base */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Formulaires et conteneurs */
+.army-form, .dice-view, .game-view, .unit-form-selected-list {
+    margin: 20px auto;
+    max-width: 600px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.unit-form-selected-list {
+    margin-top: 30px;
+}
+
+/* Fieldsets pour une meilleure structure */
+fieldset {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+legend {
+    font-weight: bold;
+    font-size: 1.2em;
+    padding: 0 10px;
+    color: #333;
+}
+
+/* Listes */
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.unit-form-selected-list li {
+    background: #e7e7e7;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.unit-form-selected-list li:nth-child(even) {
+    background-color: #f2f2f2; /* Alternance de couleur pour les listes */
+}
+
+/* Boutons */
+button {
+    padding: 10px 15px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:disabled {
+    background-color: #7c7e84;
+}
+
+button:hover:enabled {
+    background-color: #0056b3;
+}
+
+.delete-button {
+    background-color: #dc3545; /* Rouge pour les boutons de suppression */
+}
+
+.delete-button:hover {
+    background-color: #c82333; /* Rouge foncé au survol */
+}
+
+#game-reset-button {
+    background-color: #c82333; /* Rouge foncé au survol */
+}
+
+/* Formulaires */
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    font-size: 1em;
+}
+
+/* Vue principale du jeu */
+#game-view {
+    text-align: center;
+}
+
+#game-view h2, #game-view h3 {
+    margin: 10px 0;
+}
+
+/* Responsivité */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .army-form, .dice-view, .unit-form-selected-list {
+        max-width: 100%;
+    }
+}
+
+.stratagem-card {
+    border-radius: 4px;
+    border: 2px solid #c3dabd;
+    margin:2px;
+}
+
+.stratagem-title {
+    background-color: #c3dabd;
+    color: #0f5412;
+}
+
+.stratagem-cost {
+    color: grey;
+    font-weight:bold;
+    padding-left:20px;
+}
+
+.stratagem-when {
+    background-color: #eaeee9;
+    color: #0f5412;
+    font-style: italic;
+    font-size: 0.9em;
+}
+
+.stratagem-target {
+    background-color: #d2ece3;
+    color: #0f1d54;
+    font-size: 0.9em;
+}
+
+.stratagem-effect {
+    color: black;
+}
+
+.stratagem-restrictions {
+    background-color: #eadede;
+    color: #770d0d;
+    font-size: 0.9em;
+}

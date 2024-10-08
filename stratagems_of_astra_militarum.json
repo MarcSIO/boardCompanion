@@ -1,65 +1,68 @@
-{
-  "Phase de Commandement": {
-    "Moi": [
-      "Mobiliser les ressources",
-      "Aptitude tactique de commandement"
-    ],
-    "L'adversaire": [
-      "Perturbation de la stratégie"
-    ]
+[
+  {
+    "name": "RENFORTS !",
+    "type": "RÉGIMENT COMBINÉ – STRATAGÈME DE RUSE STRATÉGIQUE",
+    "cost": 2,
+    "description": "L’Astra Militarum peut faire appel à des réserves de soldats quasi inépuisables.",
+    "when": "À n’importe quelle phase.",
+    "target": "1 unité **Régiment** de votre armée qui vient d’être détruite. Vous pouvez utiliser ce Stratagème sur cette unité même si elle vient d’être détruite.",
+    "effect": " Ajoutez une nouvelle unité à votre armée identique à votre unité détruite, en Réserve Stratégique, à son Effectif Initial, et avec tous ses PV initiaux.",
+    "restrictions": " Ce Stratagème ne peut pas être utilisé pour restituer des unités **Personnage** à des unités Attachées."
   },
-  "Phase de Mouvement": {
-    "Moi": [
-      "Manœuvre de flanc",
-      "Réorganisation rapide"
-    ],
-    "L'adversaire": [
-      "Contre-mesure"
-    ]
+  {
+    "name": "QUADRILLAGE DE TIRS",
+    "type": "RÉGIMENT COMBINÉ – STRATAGÈME DE TACTIQUE DE BATAILLE",
+    "cost": 2,
+    "description": "La doctrine de combat de l’Astra Militarum a recours à la concentration de tirs de plusieurs directions à la fois.",
+    "when": "À votre phase de Tir.",
+    "turn": "me",
+    "phaseIndex": 3,
+    "target": " 1 unité **Régiment** ou **Escadron** de votre armée qui n’a pas été choisie pour tirer à cette phase.",
+    "effect": "Après que votre unité a résolu ses attaques, choisissez 1 unité ennemie qui a été ciblée par au moins 1 de ces attaques. Jusqu’à la fin de la phase, chaque fois qu’une attaque est faite contre cette unité ennemie par une figurine **Régiment** ou **Escadron** de votre armée, sauf si l’unité attaquante est Ébranlée, améliorez de 1 la caractéristique de Pénétration d’Armure de l’attaque."
   },
-  "Phase Psychique": {
-    "Moi": [
-      "Invocation mentale",
-      "Protection mentale"
-    ],
-    "L'adversaire": [
-      "Dissipation"
-    ]
+  {
+    "name": "TIR DE SUPPRESSION",
+    "type": "RÉGIMENT COMBINÉ – STRATAGÈME DE RUSE STRATÉGIQUE",
+    "cost": 1,
+    "description": "Après avoir reçu l’ordre de concentrer leurs rafales, les soldats sont capables de cribler le plus coriace des ennemis d’une grêle de tirs.",
+    "when": "À votre phase de Tir.",
+    "turn": "me",
+    "phaseIndex": 3,
+    "target": "1 unité **Infanterie Astra Militarum** de votre armée qui n’a pas été choisie pour tirer à cette phase, et 1 unité ennemie (hormis les **Monstres** et **Véhicules**).",
+    "effect": "Si votre unité **Astra Militarum** cause au moins 1 touche contre cette unité ennemie à cette phase, jusqu’à la fin du prochain tour de votre adversaire, chaque fois qu’une figurine de cette unité ennemie fait une attaque, soustrayez 1 au jet de Touche."
   },
-  "Phase de Tir": {
-    "Moi": [
-      "Tir de suppression",
-      "Feu nourri"
-    ],
-    "L'adversaire": [
-      "Couverture"
-    ]
+  {
+    "name": "EXPERTS EN BOMBARDEMENTS",
+    "type": "RÉGIMENT COMBINÉ – STRATAGÈME DE RUSE STRATÉGIQUE",
+    "cost": 1,
+    "description": "Capables de coordonner leurs tirs avec les données communiquées par des observateurs, les artilleurs de ce régiment pilonnent l’ennemi avec précision.",
+    "when": "Au début de votre phase de Tir.",
+    "turn": "me",
+    "phaseIndex": 3,
+    "target": "1 unité **Astra Militarum** de votre armée équipée d’un émetteur vox, et 1 unité ennemie visible de cette unité.",
+    "effect": "Jusqu’à la fin de la phase, chaque fois qu’une figurine **Astra Militarum** de votre armée fait une attaque avec une arme à Tir Indirect qui cible cette unité ennemie, sauf si la figurine attaquante est Ébranlée, ajoutez 1 au jet de Touche."
   },
-  "Phase de Charge": {
-    "Moi": [
-      "Charge éclair",
-      "Charge stratégique"
-    ],
-    "L'adversaire": [
-      "Attaque d'opportunité"
-    ]
+  {
+    "name": "COMMANDEMENT EXALTANT",
+    "type": "RÉGIMENT COMBINÉ – STRATAGÈME DE FAIT ÉPIQUE",
+    "cost": 1,
+    "description": "Cet officier est renommé pour son excellence stratégique. Son jargon de bataille brusque, affiné au fil d’années de service, procure à ses troupes une efficacité redoutable, renforcée encore par l’exemple qu’il donne de lui-même.",
+    "when": "À la phase de Commandement adverse.",
+    "turn": "opponent",
+    "phaseIndex": 0,
+    "target": " 1 unité **Officier Astra Militarum** de votre armée.",
+    "effect": "Votre **Officier** peut donner 1 Ordre comme s’il s’agissait de votre phase de Commandement.",
+    "restrictions": "Votre Officier ne peut pas donner cet Ordre à une unité Ébranlée"
   },
-  "Phase de Combat": {
-    "Moi": [
-      "Assaut brutal",
-      "Défense acharnée"
-    ],
-    "L'adversaire": [
-      "Riposte"
-    ]
-  },
-  "Phase de Moral": {
-    "Moi": [
-      "Rassemblement des troupes",
-      "Ralliement"
-    ],
-    "L'adversaire": [
-      "Effondrement"
-    ]
+  {
+    "name": "PUISSANCE BLINDÉE",
+    "type": "RÉGIMENT COMBINÉ – STRATAGÈME D’ÉQUIPEMENT",
+    "cost": 2,
+    "description": "Les chars de la Garde Impériale ne sont pas seulement renforcés d’un blindage de plastacier, mais aussi d’une foi fervente en l’Empereur et d’un mépris insondable pour ses ennemis.",
+    "when": "À la phase de Tir adverse, juste après qu’une unité ennemie a choisi ses cibles",
+    "turn": "opponent",
+    "phaseIndex": 3,
+    "target": "1 unité **Véhicule Astra Militarum** de votre armée qui a été choisie comme cible d’au moins 1 attaque de l’unité attaquante.",
+    "effect": "Jusqu’à la fin de la phase, chaque fois qu’une attaque est allouée à votre unité, soustrayez 1 à la caractéristique de Dégâts de l’attaque."
   }
-}
+]
