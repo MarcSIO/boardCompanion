@@ -170,8 +170,10 @@ function updateTurnDisplay() {
 }
 
 function nextPhase() {
+    // ligne ajoutée suite à un bug incompréhensible et non reproduit 5mn plus tard
     const oldCurrentIndex = currentPhaseIndex;
     currentPhaseIndex = (currentPhaseIndex + 1) % phases.length;
+    // if ajouté suite à un bug incompréhensible et non reproduit 5mn plus tard
     if(oldCurrentIndex == currentPhaseIndex){
         currentPhaseIndex = (currentPhaseIndex + 1) % phases.length;
     }
