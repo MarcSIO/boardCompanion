@@ -211,7 +211,3 @@ select {
     float:left;
     background-color: gray;
 }
-
-.stratagem-button-cancel:hover {
-    background-color: black;
-}

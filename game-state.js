@@ -66,18 +66,24 @@ function populateSelect(data, selectId) {
 
 function populateSratagems(data, divId) {
     const divElement = document.getElementById(divId);
+    const divActiveElement = document.getElementById('stratagem-active-list');
+    let stratagem_id = 1;
     data.forEach(item => {
-        const listItem = createStratagemeListItem(item)
+        const listItem = createStratagemeListItem(item, stratagem_id);
+        const activListItem = createStratagemeListItem(item, stratagem_id);
         divElement.appendChild(listItem);
+        divActiveElement.appendChild(activListItem);
+        stratagem_id = stratagem_id + 1;
     });
     lexiqueSelector();
     updateStratagems();
-    document.querySelector('.stratagem-button')
+    updateActiveStratagems();
+    divElement.querySelector('.stratagem-button')
         .addEventListener('click', (e) => stratagemButtonUse(e));
-    document.querySelector('.stratagem-button-cancel')
+    divElement.querySelector('.stratagem-button-cancel')
         .addEventListener('click', (e) => stratagemButtonCancelUse(e));
+    divActiveElement.querySelector('button').style.display = "none";
 }
-
 function restoreListFromLocalStorage(key, listId, removeCallback) {
     const items = JSON.parse(localStorage.getItem(key)) || [];
     items.forEach(item => {
@@ -190,13 +196,12 @@ function nextPhase() {
     document.getElementById('current-phase-value').textContent = phases[currentPhaseIndex];
     localStorage.setItem('currentPhaseIndex', currentPhaseIndex);
     localStorage.setItem('currentTurn', currentTurn);
-    console.log('current phase index');
-    console.log(currentPhaseIndex);
     updateStratagems();
+    updateActiveStratagems();
 }
 
-function showSelector(query){
-    let selected = document.querySelectorAll(query);
+function showSelectedStratagems(query){
+    let selected = document.getElementById('stratagem-available-list').querySelectorAll(query);
     selected.forEach(item => {
         item.style.display = 'block';
     })
@@ -215,22 +220,31 @@ function updateStratagems() {
         query_current_any = ".stratagem-turn-opponent.stratagem-phase-any";
         query_current_current = ".stratagem-turn-opponent.stratagem-phase-" + currentPhaseIndex;
     }
-    let selected = document.querySelectorAll(".stratagem-card");
+    let selected = document.getElementById('stratagem-available-list')
+        .querySelectorAll(".stratagem-card");
     selected.forEach(item => {
         item.style.display = 'none';
     })
-    showSelector(query_any_any);
-    showSelector(query_any_current);
-    showSelector(query_current_any);
-    showSelector(query_current_current);
+    showSelectedStratagems(query_any_any);
+    showSelectedStratagems(query_any_current);
+    showSelectedStratagems(query_current_any);
+    showSelectedStratagems(query_current_current);
+}
+
+function updateActiveStratagems(){
+    let selected = document.getElementById('stratagem-active-list')
+        .querySelectorAll(".stratagem-card");
+    selected.forEach(item => {
+        item.style.display = 'none';
+    })
 }
 
 function mettreEnGras(str) {
     return str.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
 }
-function createStratagemeListItem(item) {
+function createStratagemeListItem(item, stratagem_id) {
     const card = document.createElement("div");
-    card.classList = "stratagem-card stratagem-phase-"
+    card.classList = "stratagem-id-" + stratagem_id + " stratagem-card stratagem-phase-"
     if(item?.phaseIndex || item.phaseIndex===0) {
         card.classList += item.phaseIndex;
     }
@@ -286,22 +300,52 @@ function createStratagemeListItem(item) {
     if(item?.restrictions) {
         card.appendChild(restrictions);
     }
-    card.style.display = 'none';
     return card;
 }
 
 function stratagemButtonUse(e){
     e.target.style.display = "none";
     e.target.parentNode.querySelector('.stratagem-button-cancel').style.display = "block";
+    e.target.parentElement.parentNode.querySelector('.stratagem-target')
+        .style.opacity = "30%";
+    e.target.parentElement.parentNode.querySelector('.stratagem-restrictions')
+        .style.opacity = "30%";
+    e.target.parentElement.parentNode.querySelector('.stratagem-effect')
+        .style.opacity = "30%";
+    e.target.parentElement.parentNode.querySelector('.stratagem-when')
+        .style.opacity = "30%";
+    let stratagem_id = 0;
+    e.target.parentElement.parentNode.classList.forEach((item) => {
+        if (item.startsWith("stratagem-id-")){
+            stratagem_id = "." + item;
+        }
+    })
+    document.getElementById('stratagem-active-list')
+        .querySelector(stratagem_id).style.display = "block";
 }
 
 function stratagemButtonCancelUse(e){
     e.target.style.display = "none";
     e.target.parentNode.querySelector('.stratagem-button').style.display = "block";
+    e.target.parentElement.parentNode.querySelector('.stratagem-target')
+        .style.opacity = "100%";
+    e.target.parentElement.parentNode.querySelector('.stratagem-restrictions')
+        .style.opacity = "100%";
+    e.target.parentElement.parentNode.querySelector('.stratagem-effect')
+        .style.opacity = "100%";
+    e.target.parentElement.parentNode.querySelector('.stratagem-when')
+        .style.opacity = "100%";
+    let stratagem_id = 0;
+    e.target.parentElement.parentNode.classList.forEach((item) => {
+        if (item.startsWith("stratagem-id-")){
+            stratagem_id = "." + item;
+        }
+    })
+    document.getElementById('stratagem-active-list')
+        .querySelector(stratagem_id).style.display = "none";
 }
 
 function lexiqueSelector(){
-    console.log("lexiqueSelector");
     let selected = document.querySelectorAll(".stratagem-card");
     selected.forEach(item => {
         Object.keys(lexique).forEach(key => {
