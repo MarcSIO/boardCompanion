@@ -198,3 +198,16 @@ select {
     border-radius: 2px;
     border: 2px dotted white;
 }
+
+.stratagem-button {
+    padding:0px 10px;
+    margin-left: 10px;
+    float:left;
+}
+
+.stratagem-button-cancel {
+    padding:0px 10px;
+    margin-left: 10px;
+    float:left;
+    background-color: gray;
+}

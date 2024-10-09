@@ -244,6 +244,8 @@ function createStratagemeListItem(item) {
     title.classList = "stratagem-title";
     title.textContent = mettreEnGras(item.name);
     title.innerHTML += ' <span class="stratagem-cost">'+item.cost+' PC</span> ';
+    title.innerHTML = '<button class="stratagem-button">Utiliser</button>' +
+        '<button class="stratagem-button-cancel" style="display: none">Annuler</button>' + title.innerHTML;
     const when = document.createElement("div");
     when.classList = "stratagem-when";
     when.textContent = item.when;
