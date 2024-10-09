@@ -72,6 +72,10 @@ function populateSratagems(data, divId) {
     });
     lexiqueSelector();
     updateStratagems();
+    document.querySelector('.stratagem-button')
+        .addEventListener('click', (e) => stratagemButtonUse(e));
+    document.querySelector('.stratagem-button-cancel')
+        .addEventListener('click', (e) => stratagemButtonCancelUse(e));
 }
 
 function restoreListFromLocalStorage(key, listId, removeCallback) {
@@ -243,9 +247,23 @@ function createStratagemeListItem(item) {
     const title = document.createElement("div");
     title.classList = "stratagem-title";
     title.textContent = mettreEnGras(item.name);
-    title.innerHTML += ' <span class="stratagem-cost">'+item.cost+' PC</span> ';
-    title.innerHTML = '<button class="stratagem-button">Utiliser</button>' +
-        '<button class="stratagem-button-cancel" style="display: none">Annuler</button>' + title.innerHTML;
+    const stratagem_button = document.createElement('button');
+    stratagem_button.classList = "stratagem-button";
+    stratagem_button.textContent = "Utiliser";
+    const stratagem_button_cancel = document.createElement('button');
+    stratagem_button_cancel.classList = "stratagem-button-cancel";
+    stratagem_button_cancel.style.display = "none";
+    stratagem_button_cancel.textContent = "Annuler";
+    stratagem_button.onclick = (event) => stratagemButtonUse(event, stratagem_button_cancel);
+    const stratagem_cost = document.createElement('span');
+    stratagem_cost.classList= "stratagem-cost";
+    stratagem_cost.textContent = item.cost +' PC';
+    const stratagem_title = document.createElement('span');
+    stratagem_title.textContent = item.title;
+    title.appendChild(stratagem_button);
+    title.appendChild(stratagem_button_cancel);
+    title.appendChild(stratagem_title);
+    title.appendChild(stratagem_cost);
     const when = document.createElement("div");
     when.classList = "stratagem-when";
     when.textContent = item.when;
@@ -270,6 +288,16 @@ function createStratagemeListItem(item) {
     }
     card.style.display = 'none';
     return card;
+}
+
+function stratagemButtonUse(e){
+    e.target.style.display = "none";
+    e.target.parentNode.querySelector('.stratagem-button-cancel').style.display = "block";
+}
+
+function stratagemButtonCancelUse(e){
+    e.target.style.display = "none";
+    e.target.parentNode.querySelector('.stratagem-button').style.display = "block";
 }
 
 function lexiqueSelector(){
