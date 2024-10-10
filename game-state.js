@@ -21,7 +21,14 @@ const lexique = {
         "■ Ne s’applique pas aux figurines ayant une " +
         "Sauvegarde de 3+ ou meilleure contre des " +
         "attaques ayant une PA de 0." +
-        "■ On ne peut pas cumuler plusieurs occurrences."
+        "■ On ne peut pas cumuler plusieurs occurrences.",
+    "Discrétion": "Si toutes les figurines d’une unité ont cette aptitude, à chaque attaque de tir contre l’unité, on soustrait 1 " +
+        "au jet de Touche.",
+    "Bonus de Charge": "Quand une unité effectue un " +
+        "mouvement de Charge, jusqu’à la fin " +
+        "du tour, elle a l’aptitude Combat en " +
+        "Premier.",
+    "Combat en premier": "Les unités ayant fait un mouvement de Charge à ce tour et ayant un Bonus de Charge combattent en premier."
 };
 
 document.addEventListener('DOMContentLoaded', async () => {

@@ -195,6 +195,6 @@
     "phaseIndex": 3,
     "target": "1 unité de votre armée à 6\" de cette unité ennemie, et qui serait éligible pour déclarer une charge contre cette unité ennemie s’il s’agissait de votre phase de Charge.",
     "effect": "Votre unité déclare immédiatement une charge qui cible uniquement cette unité ennemie, et vous résolvez cette charge comme s’il s’agissait de votre phase de Charge.",
-    "restrictions": "Vous pouvez choisir une unité Véhicule de votre armée seulement si c’est un Marcheur. Notez que même si cette charge est réussie, votre unité ne reçoit aucun bonus de Charge à ce tour."
+    "restrictions": "Vous pouvez choisir une unité Véhicule de votre armée seulement si c’est un Marcheur. Notez que même si cette charge est réussie, votre unité ne reçoit aucun Bonus de Charge à ce tour."
   }
 ]
