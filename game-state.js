@@ -232,6 +232,12 @@ function updateStratagems() {
     let selected = document.getElementById('stratagem-available-list')
         .querySelectorAll(".stratagem-card");
     selected.forEach(item => {
+        const children = item.children;
+        for (let i = 0; i < children.length; i++) {
+            children[i].style.opacity = "1";
+        }
+        item.querySelector('.stratagem-button-cancel').style.display = "none";
+        item.querySelector('.stratagem-button').style.display = "block";
         item.style.display = 'none';
     })
     showSelectedStratagems(query_any_any);
