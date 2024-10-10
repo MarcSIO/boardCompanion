@@ -16,7 +16,7 @@
     "description": "La doctrine de combat de l’Astra Militarum a recours à la concentration de tirs de plusieurs directions à la fois.",
     "when": "À votre phase de Tir.",
     "turn": "me",
-    "phaseIndex": 3,
+    "phaseIndex": 2,
     "target": "1 unité **Régiment** ou **Escadron** de votre armée qui n’a pas été choisie pour tirer à cette phase.",
     "effect": "Après que votre unité a résolu ses attaques, choisissez 1 unité ennemie qui a été ciblée par au moins 1 de ces attaques. Jusqu’à la fin de la phase, chaque fois qu’une attaque est faite contre cette unité ennemie par une figurine **Régiment** ou **Escadron** de votre armée, sauf si l’unité attaquante est Ébranlée, améliorez de 1 la caractéristique de Pénétration d’Armure de l’attaque."
   },
@@ -27,7 +27,7 @@
     "description": "Après avoir reçu l’ordre de concentrer leurs rafales, les soldats sont capables de cribler le plus coriace des ennemis d’une grêle de tirs.",
     "when": "À votre phase de Tir.",
     "turn": "me",
-    "phaseIndex": 3,
+    "phaseIndex": 2,
     "target": "1 unité **Infanterie Astra Militarum** de votre armée qui n’a pas été choisie pour tirer à cette phase, et 1 unité ennemie (hormis les **Monstres** et **Véhicules**).",
     "effect": "Si votre unité **Astra Militarum** cause au moins 1 touche contre cette unité ennemie à cette phase, jusqu’à la fin du prochain tour de votre adversaire, chaque fois qu’une figurine de cette unité ennemie fait une attaque, soustrayez 1 au jet de Touche."
   },
@@ -38,7 +38,7 @@
     "description": "Capables de coordonner leurs tirs avec les données communiquées par des observateurs, les artilleurs de ce régiment pilonnent l’ennemi avec précision.",
     "when": "Au début de votre phase de Tir.",
     "turn": "me",
-    "phaseIndex": 3,
+    "phaseIndex": 2,
     "target": "1 unité **Astra Militarum** de votre armée équipée d’un émetteur vox, et 1 unité ennemie visible de cette unité.",
     "effect": "Jusqu’à la fin de la phase, chaque fois qu’une figurine **Astra Militarum** de votre armée fait une attaque avec une arme à Tir Indirect qui cible cette unité ennemie, sauf si la figurine attaquante est Ébranlée, ajoutez 1 au jet de Touche."
   },
@@ -61,8 +61,140 @@
     "description": "Les chars de la Garde Impériale ne sont pas seulement renforcés d’un blindage de plastacier, mais aussi d’une foi fervente en l’Empereur et d’un mépris insondable pour ses ennemis.",
     "when": "À la phase de Tir adverse, juste après qu’une unité ennemie a choisi ses cibles",
     "turn": "opponent",
-    "phaseIndex": 3,
+    "phaseIndex": 2,
     "target": "1 unité **Véhicule Astra Militarum** de votre armée qui a été choisie comme cible d’au moins 1 attaque de l’unité attaquante.",
     "effect": "Jusqu’à la fin de la phase, chaque fois qu’une attaque est allouée à votre unité, soustrayez 1 à la caractéristique de Dégâts de l’attaque."
+  },
+  {
+    "name": "RELANCE DE COMMANDEMENT",
+    "type": "BASE – STRATAGÈME DE TACTIQUE DE BATAILLE",
+    "cost": 1,
+    "description": "Un grand commandant peut même plier les caprices du destin à sa volonté, afin d’assurer la victoire",
+    "when": "À n’importe quelle phase, après que vous avez fait un jet de Touche, un jet de Blessure, un jet de Dégât, un jet de sauvegarde, un jet d’Avance, un jet de Charge, un test de Fuite Désespérée, un test de Risque, ou juste après que vous avez jeté les dés pour déterminer le nombre d’attaques effectuées avec une arme, pour une attaque, figurine ou unité de votre armée.",
+    "target": "Non pertinent.",
+    "effect": "Vous pouvez relancer ce jet ou ce test."
+  },
+  {
+    "name": "CONTRE-OFFENSIVE",
+    "type": "BASE – STRATAGÈME DE RUSE STRATÉGIQUE",
+    "cost": 2,
+    "description": "En combat rapproché, la moindre hésitation peut laisser entrevoir une faille qu’un adversaire vif saura exploiter.",
+    "when": "À la phase de Combat, juste après qu’une unité ennemie a combattu.",
+    "phaseIndex": 4,
+    "target": "1 unité de votre armée éligible qui est à Portée d’Engagement d’une ou plusieurs unités ennemies et qui n’a pas déjà été choisie pour combattre à cette phase.",
+    "effect": "Votre unité est la suivante à combattre."
+  },
+  {
+    "name": "DÉFI ÉPIQUE",
+    "type": "BASE – STRATAGÈME DE FAIT ÉPIQUE",
+    "cost": 1,
+    "description": "Les légendes du 41e Millénaire abondent de duels mortels entre d’illustres champions",
+    "when": "À la phase de Combat, quand une unité **Personnage** de votre armée à Portée d’Engagement d’une ou plusieurs unités Attachées est choisie pour combattre.",
+    "phaseIndex": 4,
+    "target": "1 figurine **Personnage** de votre unité.",
+    "effect": "Jusqu’à la fin de la phase, toutes les attaques de mêlée de cette figurine ont l’aptitude [PRÉCISION]."
+  },
+  {
+    "name": "COURAGE INSENSÉ",
+    "type": "BASE – STRATAGÈME DE FAIT ÉPIQUE",
+    "cost": 1,
+    "description": "Trop zélés ou belliqueux pour songer à leur survie, ces guerriers tiennent leurs positions envers et contre tout.",
+    "when": "À l’étape d’Ébranlement de votre phase de Commandement, juste après avoir raté un test d’Ébranlement pour une unité de votre armée.",
+    "turn": "me",
+    "phaseIndex": 0,
+    "target": "L’unité de votre armée pour laquelle vous venez de faire ce test d’Ébranlement (même si vos unités Ébranlées ne peuvent normalement pas être affectées par vos Stratagèmes).",
+    "effect": "Votre unité est considérée comme ayant réussi ce test et n’est pas Ébranlé en conséquence."
+  },
+  {
+    "name": "GRENADE",
+    "type": "BASE – STRATAGÈME D’ÉQUIPEMENT",
+    "cost": 1,
+    "description": "Armant leurs projectiles à main, ces guerriers reculent et envoient la mort au beau milieu de l’ennemi.",
+    "when": "À votre phase de Tir.",
+    "turn": "me",
+    "phaseIndex": 2,
+    "target": "1 unité **Grenades** de votre armée hors de Portée d’Engagement des unités ennemies et qui n’a pas été choisie pour tirer à cette phase.",
+    "effect": "Choisissez 1 unité ennemie hors de Portée d’Engagement des unités de votre armée et à 8\" et visible de votre unité **Grenades**. Jetez six D6: pour chaque 4+, l’unité ennemie subit 1 blessure mortelle."
+  },
+  {
+    "name": "ATTAQUE DE CHAR",
+    "type": "BASE – STRATAGÈME DE RUSE STRATÉGIQUE",
+    "cost": 1,
+    "description": "Éperonner l’ennemi avec un véhicule n’est pas une tactique très subtile, mais elle est efficace.",
+    "when": "À votre phase de Charge.",
+    "turn": "me",
+    "phaseIndex": 3,
+    "target": "1 unité **Véhicule** de votre armée.",
+    "effect": "Jusqu’à la fin de la phase, après que votre unité a terminé un mouvement de Charge, choisissez 1 unité ennemie à Portée d’Engagement d’elle, puis choisissez 1 arme de mêlée dont votre unité est équipée. Jetez autant de D6 que la caractéristique de Force de l’arme choisie. Si cette caractéristique de Force est supérieure à la caractéristique d’Endurance de cette unité ennemie, jetez deux D6 supplémentaires. Pour chaque 5+, cette unité ennemie subit 1 blessure mortelle (jusqu’à un maximum de 6 blessures mortelles)."
+  },
+  {
+    "name": "TIR EN ÉTAT D’ALERTE",
+    "type": "BASE – STRATAGÈME DE RUSE STRATÉGIQUE",
+    "cost": 1,
+    "description": "Une grêle de tirs peut repousser l’ennemi qui approche.",
+    "when": "À la phase de Mouvement ou de Charge adverse, juste après qu’une unité ennemie est placée ou qu’une unité ennemie commence ou finit un mouvement Normal, d’Avance, de Retraite ou de Charge",
+    "turn": "opponent",
+    "phaseIndex": 1,
+    "target": "1 unité de votre armée à 24\" de cette unité ennemie et qui serait éligible pour tirer s’il s’agissait de votre phase de Tir.",
+    "effect": "Votre unité peut tirer sur cette unité ennemie comme s’il s’agissait de votre phase de Tir.",
+    "restrictions": "Jusqu’à la fin de la phase, à chaque attaque de tir d’une figurine de votre unité, un jet de Touche non modifié de 6 est requis pour causer une touche, sans tenir compte de la Capacité de Tir de l’arme attaquante ni d’aucun modificateur. Vous pouvez utiliser ce Stratagème une seule fois par tour."
+  },
+  {
+    "name": "TIR EN ÉTAT D’ALERTE",
+    "type": "BASE – STRATAGÈME DE RUSE STRATÉGIQUE",
+    "cost": 1,
+    "description": "Une grêle de tirs peut repousser l’ennemi qui approche.",
+    "when": "À la phase de Mouvement ou de Charge adverse, juste après qu’une unité ennemie est placée ou qu’une unité ennemie commence ou finit un mouvement Normal, d’Avance, de Retraite ou de Charge",
+    "turn": "opponent",
+    "phaseIndex": 3,
+    "target": "1 unité de votre armée à 24\" de cette unité ennemie et qui serait éligible pour tirer s’il s’agissait de votre phase de Tir.",
+    "effect": "Votre unité peut tirer sur cette unité ennemie comme s’il s’agissait de votre phase de Tir.",
+    "restrictions": "Jusqu’à la fin de la phase, à chaque attaque de tir d’une figurine de votre unité, un jet de Touche non modifié de 6 est requis pour causer une touche, sans tenir compte de la Capacité de Tir de l’arme attaquante ni d’aucun modificateur. Vous pouvez utiliser ce Stratagème une seule fois par tour."
+  },
+  {
+    "name": "ARRIVÉE PRÉCIPITÉE",
+    "type": "BASE – STRATAGÈME DE RUSE STRATÉGIQUE",
+    "cost": 1,
+    "description": "Qu’il s’agisse de stratégie, de technologie ou de rituel surnaturel, nombreux sont les moyens par lesquels un commandant peut hâter l’arrivée de ses troupes.",
+    "when": "À la fin de la phase de Mouvement adverse.",
+    "turn": "opponent",
+    "phaseIndex": 1,
+    "target": "1 unité de votre armée qui est en Réserve.",
+    "effect": "Votre unité peut arriver sur le champ de bataille comme s’il s’agissait de l’étape des Renforts de votre phase de Mouvement.",
+    "restrictions": "Vous ne pouvez pas utiliser ce Stratagème pour permettre à une unité d’arriver sur le champ de bataille à un round où elle n’aurait normalement pas été en mesure de le faire."
+  },
+  {
+    "name": "À TERRE",
+    "type": "BASE – STRATAGÈME DE TACTIQUE DE BATAILLE",
+    "cost": 1,
+    "description": "Pour survivre aux tirs ennemis, les guerriers se précipitent derrière le premier couvert venu.",
+    "when": "À la phase de Tir adverse, juste après qu’une unité ennemie a choisi ses cibles.",
+    "turn": "opponent",
+    "phaseIndex": 2,
+    "target": "1 unité **Infanterie** de votre armée qui a été choisie comme cible d’une ou plusieurs attaques de l’unité attaquante.",
+    "effect": "Jusqu’à la fin de la phase, toutes les figurines de votre unité ont une sauvegarde invulnérable de 6+ et ont le Bénéfice du Couvert."
+  },
+  {
+    "name": "ÉCRAN DE FUMÉE",
+    "type": "BASE – STRATAGÈME D’ÉQUIPEMENT",
+    "cost": 1,
+    "description": "Même le tireur le plus habile aura du mal à toucher sa cible lorsqu’elle est voilée par un nuage de fumée.",
+    "when": "À la phase de Tir adverse, juste après qu’une unité ennemie a choisi ses cibles.",
+    "turn": "opponent",
+    "phaseIndex": 2,
+    "target": "1 unité **Fumée** de votre armée qui a été choisie comme cible d’une ou plusieurs attaques de l’unité attaquante",
+    "effect": "Jusqu’à la fin de la phase, toutes les figurines de votre unité ont le Bénéfice du Couvert et l’aptitude Discrétion."
+  },
+  {
+    "name": "INTERVENTION HÉROÏQUE",
+    "type": "BASE – STRATAGÈME DE RUSE STRATÉGIQUE",
+    "cost": 2,
+    "description": "Des cris de guerre montent tandis que vos guerriers se ruent tête baissée face à l’offensive adverse.",
+    "when": "À la phase de Charge adverse, juste après qu’une unité ennemie a terminé un mouvement de Charge.",
+    "turn": "opponent",
+    "phaseIndex": 3,
+    "target": "1 unité de votre armée à 6\" de cette unité ennemie, et qui serait éligible pour déclarer une charge contre cette unité ennemie s’il s’agissait de votre phase de Charge.",
+    "effect": "Votre unité déclare immédiatement une charge qui cible uniquement cette unité ennemie, et vous résolvez cette charge comme s’il s’agissait de votre phase de Charge.",
+    "restrictions": "Vous pouvez choisir une unité Véhicule de votre armée seulement si c’est un Marcheur. Notez que même si cette charge est réussie, votre unité ne reçoit aucun bonus de Charge à ce tour."
   }
 ]

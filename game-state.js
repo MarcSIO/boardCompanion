@@ -3,11 +3,9 @@ let currentTurn;
 const phases = [
     "Phase de Commandement",
     "Phase de Mouvement",
-    "Phase Psychique",
     "Phase de Tir",
     "Phase de Charge",
-    "Phase de Combat",
-    "Phase de Moral"
+    "Phase de Combat"
 ];
 const lexique = {
     "Réserve Stratégique":"vous aurez la possibilité d’arriver sur le champ de bataille même dans la zone de déploiement adverse"
@@ -275,7 +273,7 @@ function createStratagemeListItem(item, stratagem_id) {
     }
     const title = document.createElement("div");
     title.classList = "stratagem-title";
-    title.textContent = mettreEnGras(item.name);
+    title.innerHTML = mettreEnGras(item.name);
     const stratagem_button = document.createElement('button');
     stratagem_button.classList = "stratagem-button";
     stratagem_button.textContent = "Utiliser";
@@ -295,7 +293,7 @@ function createStratagemeListItem(item, stratagem_id) {
     title.appendChild(stratagem_cost);
     const when = document.createElement("div");
     when.classList = "stratagem-when";
-    when.textContent = item.when;
+    when.innerHTML = mettreEnGras(item.when);
     const target = document.createElement("div");
     target.classList = "stratagem-target";
     target.innerHTML = "<strong>Cible</strong> : "+mettreEnGras(item.target);
