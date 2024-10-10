@@ -78,11 +78,20 @@ function populateSratagems(data, divId) {
     lexiqueSelector();
     updateStratagems();
     updateActiveStratagems();
-    divElement.querySelector('.stratagem-button')
-        .addEventListener('click', (e) => stratagemButtonUse(e));
-    divElement.querySelector('.stratagem-button-cancel')
-        .addEventListener('click', (e) => stratagemButtonCancelUse(e));
-    divActiveElement.querySelector('button').style.display = "none";
+    // Sélectionne tous les boutons avec la classe stratagem-button
+        divElement.querySelectorAll('.stratagem-button')
+            .forEach(button => {
+                button.addEventListener('click', (e) => stratagemButtonUse(e));
+            });
+
+    // Sélectionne tous les boutons avec la classe stratagem-button-cancel
+        divElement.querySelectorAll('.stratagem-button-cancel')
+            .forEach(button => {
+                button.addEventListener('click', (e) => stratagemButtonCancelUse(e));
+            });
+    divActiveElement.querySelectorAll('button').forEach(button => {
+        button.style.display = "none";
+    });
 }
 function restoreListFromLocalStorage(key, listId, removeCallback) {
     const items = JSON.parse(localStorage.getItem(key)) || [];
@@ -306,14 +315,14 @@ function createStratagemeListItem(item, stratagem_id) {
 function stratagemButtonUse(e){
     e.target.style.display = "none";
     e.target.parentNode.querySelector('.stratagem-button-cancel').style.display = "block";
-    e.target.parentElement.parentNode.querySelector('.stratagem-target')
-        .style.opacity = "30%";
-    e.target.parentElement.parentNode.querySelector('.stratagem-restrictions')
-        .style.opacity = "30%";
-    e.target.parentElement.parentNode.querySelector('.stratagem-effect')
-        .style.opacity = "30%";
-    e.target.parentElement.parentNode.querySelector('.stratagem-when')
-        .style.opacity = "30%";
+    const elementsToStyle = e.target.parentElement.parentNode.querySelectorAll(
+        '.stratagem-target, .stratagem-restrictions, .stratagem-effect, .stratagem-when'
+    );
+
+    // Appliquer le style à tous les éléments correspondants
+    elementsToStyle.forEach(element => {
+        element.style.opacity = "30%";
+    });
     let stratagem_id = 0;
     e.target.parentElement.parentNode.classList.forEach((item) => {
         if (item.startsWith("stratagem-id-")){
@@ -327,14 +336,14 @@ function stratagemButtonUse(e){
 function stratagemButtonCancelUse(e){
     e.target.style.display = "none";
     e.target.parentNode.querySelector('.stratagem-button').style.display = "block";
-    e.target.parentElement.parentNode.querySelector('.stratagem-target')
-        .style.opacity = "100%";
-    e.target.parentElement.parentNode.querySelector('.stratagem-restrictions')
-        .style.opacity = "100%";
-    e.target.parentElement.parentNode.querySelector('.stratagem-effect')
-        .style.opacity = "100%";
-    e.target.parentElement.parentNode.querySelector('.stratagem-when')
-        .style.opacity = "100%";
+    const elementsToStyle = e.target.parentElement.parentNode.querySelectorAll(
+        '.stratagem-target, .stratagem-restrictions, .stratagem-effect, .stratagem-when'
+    );
+
+    // Appliquer le style à tous les éléments correspondants
+    elementsToStyle.forEach(element => {
+        element.style.opacity = "100%";
+    });
     let stratagem_id = 0;
     e.target.parentElement.parentNode.classList.forEach((item) => {
         if (item.startsWith("stratagem-id-")){
