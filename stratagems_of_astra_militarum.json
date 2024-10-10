@@ -35,7 +35,7 @@
     "name": "EXPERTS EN BOMBARDEMENTS",
     "type": "RÉGIMENT COMBINÉ – STRATAGÈME DE RUSE STRATÉGIQUE",
     "cost": 1,
-    "description": "Capables de coordonner leurs tirs avec les données communiquées par des observateurs, les artilleurs de ce régiment pilonnent l’ennemi avec précision.",
+    "description": "Capables de coordonner leurs tirs avec les données communiquées par des observateurs, les artilleurs de ce régiment pilonnent l’ennemi avec Précision.",
     "when": "Au début de votre phase de Tir.",
     "turn": "me",
     "phaseIndex": 2,
@@ -92,7 +92,7 @@
     "when": "À la phase de Combat, quand une unité **Personnage** de votre armée à Portée d’Engagement d’une ou plusieurs unités Attachées est choisie pour combattre.",
     "phaseIndex": 4,
     "target": "1 figurine **Personnage** de votre unité.",
-    "effect": "Jusqu’à la fin de la phase, toutes les attaques de mêlée de cette figurine ont l’aptitude [PRÉCISION]."
+    "effect": "Jusqu’à la fin de la phase, toutes les attaques de mêlée de cette figurine ont l’aptitude [Précision]."
   },
   {
     "name": "COURAGE INSENSÉ",

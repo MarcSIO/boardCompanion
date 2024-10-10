@@ -8,7 +8,20 @@ const phases = [
     "Phase de Combat"
 ];
 const lexique = {
-    "Réserve Stratégique":"vous aurez la possibilité d’arriver sur le champ de bataille même dans la zone de déploiement adverse"
+    "Réserve Stratégique":"vous aurez la possibilité d’arriver sur le champ de bataille même dans la zone de déploiement adverse",
+    "Précision":"Chaque fois qu’une " +
+        "attaque faite avec une telle arme réussit à blesser une " +
+        "unité Attachée (p. 39), si une figurine Personnage" +
+        "dans l’unité cible est visible de la figurine attaquante, " +
+        "le joueur contrôlant cette dernière peut choisir que " +
+        "l’attaque soit allouée à la figurine Personnage au lieu " +
+        "de suivre la séquence d’attaque normale.",
+    "Bénéfice du Couvert":" On ajoute 1 aux jets de " +
+        "sauvegarde d’armure contre les attaques de tir." +
+        "■ Ne s’applique pas aux figurines ayant une " +
+        "Sauvegarde de 3+ ou meilleure contre des " +
+        "attaques ayant une PA de 0." +
+        "■ On ne peut pas cumuler plusieurs occurrences."
 };
 
 document.addEventListener('DOMContentLoaded', async () => {
