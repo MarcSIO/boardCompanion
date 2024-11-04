@@ -208,5 +208,27 @@
     "target": "Les figurines **Officier** de votre armée avec cette aptitude peuvent donner des Ordres. La fiche technique de chaque **Officier** spécifie combien d’Ordres il peut donner et quelles unités sont éligibles pour recevoir ces Ordres. Chaque fois qu’une figurine **Officier** donne un Ordre, choisissez l’un des Ordres ci-dessous, puis choisissez 1 unité amie éligible à 6\" de cette figurine **Officier** à laquelle le donner.",
     "effect": "Jusqu’au début de votre prochaine phase de Commandement, l’unité choisie est affectée par cet Ordre. Si une unité affectée par un Ordre devient Ébranlée, l’Ordre cesse de l’affecter.",
     "restrictions": "Sauf mention contraire, une unité peut être affectée par un seul Ordre à la fois (tout Ordre donné par la suite à cette unité remplace l’actuel)."
+  },
+  {
+    "name": "SOLDATS NÉS",
+    "type": "RÈGLE DE DÉTACHEMENT",
+    "cost": 0,
+    "description": "La plupart des régiments inculquent à leurs soldats dès leur recrutement les doctrines légendaires du Tactica Imperium. L’infanterie et les équipages de chars sont entraînés aux tirs croisés et aux fusillades rapprochées.",
+    "when": "À votre phase de Commandement.",
+    "turn": "me",
+    "phaseIndex": 2,
+    "target": "**Régiment**, **Escadron**",
+    "effect": "Chaque fois qu'une figurine dans une unité **Régiment** de votre armée fait une attaque à distance qui cible une unité visible (hors **Monstres** et **Véhicules**), cette attaque a l'aptitude [TOUCHES SOUTENUES]. Chaque fois qu'une figurine dans une unité **Escadron** de votre armée fait une attaque à distance qui cible une unité **Monstres** ou **Véhicules** visible, cette attaque a l'aptitude [TOUCHES SOUTENUES]."
+  },
+  {
+    "name": "Défenseurs de l’Humanité",
+    "type": "APTITUDES - ESCOUADE D’INFANTERIE",
+    "cost": 0,
+    "description": "",
+    "when": "À la phase de Tir adverse.",
+    "turn": "opponent",
+    "phaseIndex": 2,
+    "target": "ESCOUADE D’INFANTERIE",
+    "effect": "Chaque fois qu’une attaque de tir cible cette unité, si cette unité est à portée d’un pion d’objectif que vous contrôlez, les figurines de cette unité ont le **Bénéfice du Couvert** contre l’attaque."
   }
 ]
