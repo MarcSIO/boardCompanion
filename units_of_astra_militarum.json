@@ -12,7 +12,14 @@
     "name": "Banesword"
   },
   {
-    "name": "Basilisk"
+    "name": "Basilisk",
+    "points": 140,
+    "composition": [
+      {
+        "name": "Basilisk",
+        "quantity": 1
+      }
+    ]
   },
   {
     "name": "Batterie d’Artillerie"
@@ -24,7 +31,14 @@
     "name": "Cavaliers d’Attila"
   },
   {
-    "name": "Char de Combat Leman Russ"
+    "name": "Char de Combat Leman Russ",
+    "points": 170,
+    "composition": [
+      {
+        "name": "Char de Combat Leman Russ",
+        "quantity": 1
+      }
+    ]
   },
   {
     "name": "Char de Combat Rogal Dorn"
@@ -33,7 +47,18 @@
     "name": "Chimera"
   },
   {
-    "name": "Combattants des Jungles de Catachan"
+    "name": "Combattants des Jungles de Catachan",
+    "points": 55,
+    "composition": [
+      {
+        "name": "Sergent Combattant des Jungles",
+        "quantity": 1
+      },
+      {
+        "name": "Combattant des Jungles",
+        "quantity": 9
+      }
+    ]
   },
   {
     "name": "Commandant Blindé"
@@ -54,7 +79,18 @@
     "name": "Escouade d’Armes Lourdes"
   },
   {
-    "name": "Escouade d’État-Major Cadienne"
+    "name": "Escouade d’État-Major Cadienne",
+    "points": 65,
+    "composition": [
+      {
+        "name": "Commandant Cadien",
+        "quantity": 1
+      },
+      {
+        "name": "Escouade d'état-major Cadienne",
+        "quantity": 4
+      }
+    ]
   },
   {
     "name": "Escouade d’État-Major de Peloton"
@@ -63,7 +99,36 @@
     "name": "Escouade d’État-Major du Militarum Tempestus"
   },
   {
-    "name": "Escouade d’Infanterie"
+    "name": "Escouade d’Infanterie (1Ser/9Grd)",
+    "points": 60,
+    "composition": [
+      {
+        "name": "Sergent",
+        "quantity": 1
+      },
+      {
+        "name": "Garde Impérial",
+        "quantity": 9
+      }
+    ]
+  },
+  {
+    "name": "Escouade d’Infanterie (1Ser/1HW/7Grd)",
+    "points": 60,
+    "composition": [
+      {
+        "name": "Sergent",
+        "quantity": 1
+      },
+      {
+        "name": "Garde Impérial",
+        "quantity": 7
+      },
+      {
+        "name": "Équipe d’Armes Lourdes",
+        "quantity": 1
+      }
+    ]
   },
   {
     "name": "Escouade d’Ogryns"
@@ -93,7 +158,14 @@
     "name": "Kasrkin"
   },
   {
-    "name": "Leman Russ Demolisher"
+    "name": "Leman Russ Demolisher",
+    "points": 200,
+    "composition": [
+      {
+        "name": "Leman Russ Demolisher",
+        "quantity": 1
+      }
+    ]
   },
   {
     "name": "Leman Russ Eradicator"
@@ -147,7 +219,14 @@
     "name": "Sly Marbo"
   },
   {
-    "name": "Snipers Ratlings"
+    "name": "Snipers Ratlings",
+    "points": 60,
+    "composition": [
+      {
+        "name": "Sniper Ratlings",
+        "quantity": 5
+      }
+    ]
   },
   {
     "name": "Stormlord"
@@ -168,7 +247,18 @@
     "name": "Technaugure Régimentaire"
   },
   {
-    "name": "Troupes de Choc Cadiennes"
+    "name": "Troupes de Choc Cadiennes",
+    "points": 60,
+    "composition": [
+      {
+        "name": "Sergent de Choc",
+        "quantity": 1
+      },
+      {
+        "name": "Troupe de Choc",
+        "quantity": 9
+      }
+    ]
   },
   {
     "name": "Ursula Creed"

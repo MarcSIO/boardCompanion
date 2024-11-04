@@ -152,6 +152,28 @@
     "restrictions": "Jusqu’à la fin de la phase, à chaque attaque de tir d’une figurine de votre unité, un jet de Touche non modifié de 6 est requis pour causer une touche, sans tenir compte de la Capacité de Tir de l’arme attaquante ni d’aucun modificateur. Vous pouvez utiliser ce Stratagème une seule fois par tour."
   },
   {
+    "name": "Tir de Couverture",
+    "type": "APTITUDES - ESCOUADE D'ARMES LOURDES",
+    "cost": 0,
+    "description": "",
+    "when": "À la phase de Mouvement ou de Charge adverse, juste après qu’une unité ennemie est placée ou qu’une unité ennemie commence ou finit un mouvement Normal, d’Avance, de Retraite ou de Charge",
+    "turn": "opponent",
+    "phaseIndex": 1,
+    "target": "ESCOUADE D'ARMES LOURDES",
+    "effect": "Chaque fois que vous ciblez cette unité avec le Stratagème Tir en État d’Alerte, en résolvant ce Stratagème, des touches sont causées sur des jets de Touche non modifiés de 5+, ou sur des jets de Touche non modifiés de 4+ à la place si cette unité est à 6\" d’une ou plusieurs unités **Peloton** amies."
+  },
+  {
+    "name": "Tir de Couverture",
+    "type": "APTITUDES - ESCOUADE D'ARMES LOURDES",
+    "cost": 0,
+    "description": "",
+    "when": "À la phase de Mouvement ou de Charge adverse, juste après qu’une unité ennemie est placée ou qu’une unité ennemie commence ou finit un mouvement Normal, d’Avance, de Retraite ou de Charge",
+    "turn": "opponent",
+    "phaseIndex": 3,
+    "target": "ESCOUADE D'ARMES LOURDES",
+    "effect": "Chaque fois que vous ciblez cette unité avec le Stratagème Tir en État d’Alerte, en résolvant ce Stratagème, des touches sont causées sur des jets de Touche non modifiés de 5+, ou sur des jets de Touche non modifiés de 4+ à la place si cette unité est à 6\" d’une ou plusieurs unités **Peloton** amies."
+  },
+  {
     "name": "ARRIVÉE PRÉCIPITÉE",
     "type": "BASE – STRATAGÈME DE RUSE STRATÉGIQUE",
     "cost": 1,
@@ -210,15 +232,26 @@
     "restrictions": "Sauf mention contraire, une unité peut être affectée par un seul Ordre à la fois (tout Ordre donné par la suite à cette unité remplace l’actuel)."
   },
   {
+    "name": "Vox de Maître",
+    "type": "APTITUDES D’ÉQUIPEMENT - ESCOUADE D’ÉTAT-MAJOR CADIENNE",
+    "cost": 0,
+    "description": "",
+    "when": "À votre phase de Commandement.",
+    "turn": "me",
+    "phaseIndex": 0,
+    "target": "ESCOUADE D’ÉTAT-MAJOR CADIENNE porteur d'un **Vox de Maître**",
+    "effect": "Chaque fois que l’Officier de l’unité du porteur donne un Ordre, il peut le donner à une unité éligible à 24\"."
+  },
+  {
     "name": "SOLDATS NÉS",
     "type": "RÈGLE DE DÉTACHEMENT",
     "cost": 0,
     "description": "La plupart des régiments inculquent à leurs soldats dès leur recrutement les doctrines légendaires du Tactica Imperium. L’infanterie et les équipages de chars sont entraînés aux tirs croisés et aux fusillades rapprochées.",
-    "when": "À votre phase de Commandement.",
+    "when": "À votre phase de Tir.",
     "turn": "me",
     "phaseIndex": 2,
     "target": "**Régiment**, **Escadron**",
-    "effect": "Chaque fois qu'une figurine dans une unité **Régiment** de votre armée fait une attaque à distance qui cible une unité visible (hors **Monstres** et **Véhicules**), cette attaque a l'aptitude [TOUCHES SOUTENUES]. Chaque fois qu'une figurine dans une unité **Escadron** de votre armée fait une attaque à distance qui cible une unité **Monstres** ou **Véhicules** visible, cette attaque a l'aptitude [TOUCHES SOUTENUES]."
+    "effect": "Chaque fois qu'une figurine dans une unité **Régiment** de votre armée fait une attaque à distance qui cible une unité visible (hors **Monstres** et **Véhicules**), cette attaque a l'aptitude [TOUCHES FATALES]. Chaque fois qu'une figurine dans une unité **Escadron** de votre armée fait une attaque à distance qui cible une unité **Monstres** ou **Véhicules** visible, cette attaque a l'aptitude [TOUCHES FATALES]."
   },
   {
     "name": "Défenseurs de l’Humanité",
@@ -230,5 +263,182 @@
     "phaseIndex": 2,
     "target": "ESCOUADE D’INFANTERIE",
     "effect": "Chaque fois qu’une attaque de tir cible cette unité, si cette unité est à portée d’un pion d’objectif que vous contrôlez, les figurines de cette unité ont le **Bénéfice du Couvert** contre l’attaque."
+  },
+  {
+    "name": "Émetteur Vox",
+    "type": "APTITUDES D’ÉQUIPEMENT - INFANTERIE ASTRA MILITARUM",
+    "cost": 0,
+    "description": "",
+    "when": "À n’importe quelle phase.",
+    "target": "GARDE IMPÉRIAL, COMBATTANTS DES JUNGLES DE CATACHAN ou TROUPES DE CHOC CADIENNES porteur d'un **Émetteur Vox**",
+    "effect": "Chaque fois que vous ciblez l’unité du porteur avec un Stratagème, jetez 1 D6, en ajoutant 1 au résultat s’il y a une ou plusieurs figurines Officier amies à 6\" : sur 5+, vous gagnez 1PC."
+  },
+  {
+    "name": "Cadia Tient !",
+    "type": "APTITUDES - ESCOUADE D’ÉTAT-MAJOR CADIENNE",
+    "cost": 0,
+    "description": "",
+    "when": "À n’importe quelle phase.",
+    "target": "ESCOUADE D’ÉTAT-MAJOR CADIENNE avec un COMMANDANT CADIEN vivant",
+    "effect": "Tant que cette unité inclut un **Officier Cadien**, vous pouvez ignorer certains ou tous les modificateurs aux caractéristiques des figurines de cette unité et à tous les jets ou tests pour les figurines de cette unité (à l’exclusion des modificateurs aux jets de sauvegarde)."
+  },
+  {
+    "name": "Médipac",
+    "type": "APTITUDES D’ÉQUIPEMENT - ESCOUADE D’ÉTAT-MAJOR CADIENNE",
+    "cost": 0,
+    "description": "",
+    "when": "À la phase de Tir adverse.",
+    "turn": "opponent",
+    "phaseIndex": 2,
+    "target": "ESCOUADE D’ÉTAT-MAJOR CADIENNE porteur d'un **Médipac**",
+    "effect": "L’unité du porteur a l’aptitude Insensible à la Douleur 6+."
+  },
+  {
+    "name": "Médipac",
+    "type": "APTITUDES D’ÉQUIPEMENT - ESCOUADE D’ÉTAT-MAJOR CADIENNE",
+    "cost": 0,
+    "description": "",
+    "when": "À la phase de Combat.",
+    "phaseIndex": 4,
+    "target": "ESCOUADE D’ÉTAT-MAJOR CADIENNE porteur d'un **Médipac**",
+    "effect": "L’unité du porteur a l’aptitude Insensible à la Douleur 6+."
+  },
+  {
+    "name": "Étendard Régimentaire",
+    "type": "APTITUDES D’ÉQUIPEMENT - ESCOUADE D’ÉTAT-MAJOR CADIENNE",
+    "cost": 0,
+    "description": "",
+    "when": "À la phase de Commandement.",
+    "phaseIndex": 0,
+    "target": "ESCOUADE D’ÉTAT-MAJOR CADIENNE porteur d'un **Étendard Régimentaire**",
+    "effect": "Ajoutez 1 à la caractéristique de Contrôle d’Objectif des figurines de l’unité du porteur."
+  },
+  {
+    "name": "Combattants des Jungles",
+    "type": "APTITUDES - COMBATTANTS DES JUNGLES DE CATACHAN",
+    "cost": 0,
+    "description": "",
+    "when": "À la phase de Combat.",
+    "phaseIndex": 4,
+    "target": "COMBATTANTS DES JUNGLES DE CATACHAN",
+    "effect": "À chaque attaque de mêlée d’une figurine de cette unité, si cette unité a fait un mouvement de Charge ou a été chargée à ce tour, améliorez de 1 les caractéristiques de Force et de Pénétration d’Armure de l’attaque."
+  },
+  {
+    "name": "Troupes de Choc",
+    "type": "APTITUDES - TROUPES DE CHOC CADIENNES",
+    "cost": 0,
+    "description": "",
+    "when": "À votre phase de Commandement.",
+    "turn": "me",
+    "phaseIndex": 4,
+    "target": "TROUPES DE CHOC CADIENNES",
+    "effect": "À la fin de votre phase de Commandement, si cette unité est à portée d’un pion d’objectif que vous contrôlez, ce pion d’objectif reste sous votre contrôle, même si vous n’avez aucune figurine à portée de lui, jusqu’à ce que votre adversaire le contrôle au début ou à la fin de n’importe quel tour."
+  },
+  {
+    "name": "Discrétion",
+    "type": "APTITUDES - SNIPERS RATLINGS",
+    "cost": 0,
+    "description": "",
+    "when": "À la phase de Tir adverse.",
+    "turn": "opponent",
+    "phaseIndex": 2,
+    "target": "SNIPERS RATLINGS",
+    "effect": "-1 pour toucher cette unité au Tir si toutes les figs de l'unité ont cette règle."
+  },
+  {
+    "name": "On tire et on décampe",
+    "type": "APTITUDES - SNIPERS RATLINGS",
+    "cost": 0,
+    "description": "",
+    "when": "À votre phase de Tir.",
+    "turn": "me",
+    "phaseIndex": 2,
+    "target": "SNIPERS RATLINGS",
+    "effect": "Après que cette unité a tiré, si elle n’est à Portée d’Engagement d’aucune unité ennemie, elle peut faire un mouvement Normal comme si c’était votre phase de Mouvement. En ce cas, jusqu’à la fin du tour, cette unité n’est pas éligible pour déclarer une charge."
+  },
+  {
+    "name": "Destruction Néfaste D3",
+    "type": "APTITUDES - VÉHICULES",
+    "cost": 0,
+    "description": "",
+    "when": "À la phase de Tir adverse.",
+    "turn": "opponent",
+    "phaseIndex": 2,
+    "target": "BASILISK, CHAR DE COMBAT LEMAN RUSS, LEMAN RUSS DEMOLISHER",
+    "effect": "Quand cette figurine est détruite, jetez 1 D6. Sur 6, chaque unité à 6\" subit D3 Blessures mort."
+  },
+  {
+    "name": "Destruction Néfaste D3",
+    "type": "APTITUDES - VÉHICULES",
+    "cost": 0,
+    "description": "",
+    "when": "À la phase de Combat.",
+    "phaseIndex": 4,
+    "target": "BASILISK, CHAR DE COMBAT LEMAN RUSS, LEMAN RUSS DEMOLISHER",
+    "effect": "Quand cette figurine est détruite, jetez 1 D6. Sur 6, chaque unité à 6\" subit D3 Blessures mort."
+  },
+  {
+    "name": "ENDOMMAGÉ : 1-4 PV RESTANTS",
+    "type": "MALUS - VÉHICULES",
+    "cost": 0,
+    "description": "",
+    "when": "À votre phase de Tir.",
+    "turn": "me",
+    "phaseIndex": 2,
+    "target": "BASILISK, CHAR DE COMBAT LEMAN RUSS ou LEMAN RUSS DEMOLISHER avec 1 à 4 PV restants",
+    "effect": "Tant que cette figurine a 1-4 PV restants, à chaque attaque de cette figurine, soustrayez 1 au jet de Touche."
+  },
+  {
+    "name": "ENDOMMAGÉ : 1-4 PV RESTANTS",
+    "type": "MALUS - VÉHICULES",
+    "cost": 0,
+    "description": "",
+    "when": "À la phase de Combat.",
+    "phaseIndex": 4,
+    "target": "BASILISK, CHAR DE COMBAT LEMAN RUSS ou LEMAN RUSS DEMOLISHER avec 1 à 4 PV restants",
+    "effect": "Tant que cette figurine a 1-4 PV restants, à chaque attaque de cette figurine, soustrayez 1 au jet de Touche."
+  },
+  {
+    "name": "Obus Earthshaker",
+    "type": "APTITUDES - BASILISK",
+    "cost": 0,
+    "description": "",
+    "when": "À votre phase de Tir.",
+    "turn": "me",
+    "phaseIndex": 2,
+    "target": "BASILISK",
+    "effect": "Après que cette figurine a tiré, si une ou plusieurs de ces attaques faites avec son canon Earthshaker ont causé une touche contre une unité **Infanterie** ennemie, jusqu’à la fin du prochain tour adverse, l’unité est secouée. Tant qu’une unité est secouée, soustrayez 2\" à sa caractéristique de Mouvement et soustrayez 2 à ses jets d’Avance et de Charge."
+  },
+  {
+    "name": "Fer de Lance Blindé",
+    "type": "APTITUDES - CHAR DE COMBAT LEMAN RUSS",
+    "cost": 0,
+    "description": "",
+    "when": "À votre phase de Tir.",
+    "turn": "me",
+    "phaseIndex": 2,
+    "target": "CHAR DE COMBAT LEMAN RUSS",
+    "effect": " À chaque attaque de cette figurine qui cible une unité ennemie, relancez tout jet de Touche de 1 et, si la cible de l’attaque est à portée d’un pion d’objectif que vous ne contrôlez pas, vous pouvez relancer le jet de Touche à la place."
+  },
+  {
+    "name": "Fer de Lance Blindé",
+    "type": "APTITUDES - CHAR DE COMBAT LEMAN RUSS",
+    "cost": 0,
+    "description": "",
+    "when": "À la phase de Combat.",
+    "phaseIndex": 4,
+    "target": "CHAR DE COMBAT LEMAN RUSS",
+    "effect": " À chaque attaque de cette figurine qui cible une unité ennemie, relancez tout jet de Touche de 1 et, si la cible de l’attaque est à portée d’un pion d’objectif que vous ne contrôlez pas, vous pouvez relancer le jet de Touche à la place."
+  },
+  {
+    "name": "Briseur de Lignes",
+    "type": "APTITUDES - CHAR DE COMBAT LEMAN RUSS",
+    "cost": 0,
+    "description": "",
+    "when": "À votre phase de Tir.",
+    "turn": "me",
+    "phaseIndex": 2,
+    "target": "CHAR DE COMBAT LEMAN RUSS",
+    "effect": "Quand elle fait des attaques de tir avec son obusier Demolisher, cette figurine peut cibler des unités ennemies à Portée d’Engagement d’elle (à condition qu’aucune autre unité amie ne soit également à Portée d’Engagement de l’unité ennemie). De plus, quand elle fait des attaques de tir, cette figurine ne subit pas de pénalité à ses jets de Touche à cause du fait d’être à Portée d’Engagement d’une ou plusieurs unités ennemies."
   }
 ]

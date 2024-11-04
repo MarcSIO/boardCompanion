@@ -8,15 +8,17 @@ const phases = [
     "Phase de Combat"
 ];
 const lexique = {
-    "Réserve Stratégique":"vous aurez la possibilité d’arriver sur le champ de bataille même dans la zone de déploiement adverse",
-    "Précision":"Chaque fois qu’une " +
+    "Réserve Stratégique": "vous aurez la possibilité d’arriver sur le champ de bataille même dans la zone de déploiement adverse",
+    "Portée d’Engagement": "à 1\" à l’horizontale et 5\" à la verticale d’une figurine ennemie",
+    "TOUCHES FATALES": "Blesse auto sur les touches critiques.",
+    "Précision": "Chaque fois qu’une " +
         "attaque faite avec une telle arme réussit à blesser une " +
         "unité Attachée (p. 39), si une figurine Personnage" +
         "dans l’unité cible est visible de la figurine attaquante, " +
         "le joueur contrôlant cette dernière peut choisir que " +
         "l’attaque soit allouée à la figurine Personnage au lieu " +
         "de suivre la séquence d’attaque normale.",
-    "Bénéfice du Couvert":" On ajoute 1 aux jets de " +
+    "Bénéfice du Couvert": " On ajoute 1 aux jets de " +
         "sauvegarde d’armure contre les attaques de tir." +
         "■ Ne s’applique pas aux figurines ayant une " +
         "Sauvegarde de 3+ ou meilleure contre des " +
@@ -28,7 +30,16 @@ const lexique = {
         "mouvement de Charge, jusqu’à la fin " +
         "du tour, elle a l’aptitude Combat en " +
         "Premier.",
-    "Combat en premier": "Les unités ayant fait un mouvement de Charge à ce tour et ayant un Bonus de Charge combattent en premier."
+    "Combat en premier": "Les unités ayant fait un mouvement de Charge à ce tour et ayant un Bonus de Charge combattent en premier.",
+    "Régiment": "ESCOUADE D’INFANTERIE, COMBATTANTS DES JUNGLES DE CATACHAN, TROUPES DE CHOC CADIENNES, ESCOUADE D'ARMES LOURDES",
+    "Infanterie": "ESCOUADE D’ÉTAT-MAJOR CADIENNE, ESCOUADE D’INFANTERIE, COMBATTANTS DES JUNGLES DE CATACHAN, TROUPES DE CHOC CADIENNES, ESCOUADE D'ARMES LOURDES, SNIPERS RATLINGS",
+    "Grenades": "ESCOUADE D’ÉTAT-MAJOR CADIENNE, ESCOUADE D’INFANTERIE, COMBATTANTS DES JUNGLES DE CATACHAN, TROUPES DE CHOC CADIENNES, ESCOUADE D'ARMES LOURDES",
+    "Peloton": "ESCOUADE D’INFANTERIE, COMBATTANTS DES JUNGLES DE CATACHAN, TROUPES DE CHOC CADIENNES",
+    "Officier": "COMMANDANT CADIEN",
+    "Personnage": "COMMANDANT CADIEN",
+    "Véhicule": "BASILISK, CHAR DE COMBAT LEMAN RUSS, LEMAN RUSS DEMOLISHER",
+    "Fumée": "BASILISK, CHAR DE COMBAT LEMAN RUSS, LEMAN RUSS DEMOLISHER",
+    "Escadron": "BASILISK, CHAR DE COMBAT LEMAN RUSS, LEMAN RUSS DEMOLISHER"
 };
 
 document.addEventListener('DOMContentLoaded', async () => {
