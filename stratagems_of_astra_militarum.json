@@ -330,7 +330,7 @@
     "description": "",
     "when": "À votre phase de Commandement.",
     "turn": "me",
-    "phaseIndex": 4,
+    "phaseIndex": 0,
     "target": "TROUPES DE CHOC CADIENNES",
     "effect": "À la fin de votre phase de Commandement, si cette unité est à portée d’un pion d’objectif que vous contrôlez, ce pion d’objectif reste sous votre contrôle, même si vous n’avez aucune figurine à portée de lui, jusqu’à ce que votre adversaire le contrôle au début ou à la fin de n’importe quel tour."
   },
