@@ -7,7 +7,7 @@
     "when": "À n’importe quelle phase.",
     "target": "1 unité **Régiment** de votre armée qui vient d’être détruite. Vous pouvez utiliser ce Stratagème sur cette unité même si elle vient d’être détruite.",
     "effect": "Ajoutez une nouvelle unité à votre armée identique à votre unité détruite, en Réserve Stratégique, à son Effectif Initial, et avec tous ses PV initiaux.",
-    "restrictions": "Ce Stratagème ne peut pas être utilisé pour restituer des unités **Personnage** à des unités Attachées."
+    "restrictions": "Ce Stratagème ne peut pas être utilisé pour restituer des unités **Personnage** à des unités Attachées. Utilisable **une seule fois par partie.**"
   },
   {
     "name": "QUADRILLAGE DE TIRS",
@@ -195,6 +195,18 @@
     "phaseIndex": 3,
     "target": "1 unité de votre armée à 6\" de cette unité ennemie, et qui serait éligible pour déclarer une charge contre cette unité ennemie s’il s’agissait de votre phase de Charge.",
     "effect": "Votre unité déclare immédiatement une charge qui cible uniquement cette unité ennemie, et vous résolvez cette charge comme s’il s’agissait de votre phase de Charge.",
+    "restrictions": "Vous pouvez choisir une unité Véhicule de votre armée seulement si c’est un Marcheur. Notez que même si cette charge est réussie, votre unité ne reçoit aucun Bonus de Charge à ce tour."
+  },
+  {
+    "name": "COMMANDEMENT VERBAL",
+    "type": "RÈGLE D'ARMÉE",
+    "cost": 0,
+    "description": "Élevés et formés à instiller une obéissance immédiate, les officiers de la Garde Impériale inspirent autorité et respect, et donnent des ordres d’un ton impérieux qui porte malgré le tumulte de la guerre.",
+    "when": "À votre phase de Commandement.",
+    "turn": "me",
+    "phaseIndex": 0,
+    "target": "Les figurines **Officier** de votre armée avec cette aptitude peuvent donner des Ordres. La fiche technique de chaque **Officier** spécifie combien d’Ordres il peut donner et quelles unités sont éligibles pour recevoir ces Ordres. Chaque fois qu’une figurine **Officier** donne un Ordre, choisissez l’un des Ordres ci-dessous, puis choisissez 1 unité amie éligible à 6\" de cette figurine **Officier** à laquelle le donner.",
+    "effect": "Jusqu’au début de votre prochaine phase de Commandement, l’unité choisie est affectée par cet Ordre. Sauf mention contraire, une unité peut être affectée par un seul Ordre à la fois (tout Ordre donné par la suite à cette unité remplace l’actuel). Si une unité affectée par un Ordre devient Ébranlée, l’Ordre cesse de l’affecter.",
     "restrictions": "Vous pouvez choisir une unité Véhicule de votre armée seulement si c’est un Marcheur. Notez que même si cette charge est réussie, votre unité ne reçoit aucun Bonus de Charge à ce tour."
   }
 ]
