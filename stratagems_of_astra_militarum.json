@@ -206,7 +206,7 @@
     "turn": "me",
     "phaseIndex": 0,
     "target": "Les figurines **Officier** de votre armée avec cette aptitude peuvent donner des Ordres. La fiche technique de chaque **Officier** spécifie combien d’Ordres il peut donner et quelles unités sont éligibles pour recevoir ces Ordres. Chaque fois qu’une figurine **Officier** donne un Ordre, choisissez l’un des Ordres ci-dessous, puis choisissez 1 unité amie éligible à 6\" de cette figurine **Officier** à laquelle le donner.",
-    "effect": "Jusqu’au début de votre prochaine phase de Commandement, l’unité choisie est affectée par cet Ordre. Sauf mention contraire, une unité peut être affectée par un seul Ordre à la fois (tout Ordre donné par la suite à cette unité remplace l’actuel). Si une unité affectée par un Ordre devient Ébranlée, l’Ordre cesse de l’affecter.",
-    "restrictions": "Vous pouvez choisir une unité Véhicule de votre armée seulement si c’est un Marcheur. Notez que même si cette charge est réussie, votre unité ne reçoit aucun Bonus de Charge à ce tour."
+    "effect": "Jusqu’au début de votre prochaine phase de Commandement, l’unité choisie est affectée par cet Ordre. Si une unité affectée par un Ordre devient Ébranlée, l’Ordre cesse de l’affecter.",
+    "restrictions": "Sauf mention contraire, une unité peut être affectée par un seul Ordre à la fois (tout Ordre donné par la suite à cette unité remplace l’actuel)."
   }
 ]
